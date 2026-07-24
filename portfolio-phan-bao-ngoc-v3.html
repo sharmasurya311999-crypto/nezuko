@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phan Bảo Ngọc · Kế toán – Kiểm toán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==================== NEZUKO · EDITORIAL v2 ==================== */
+:root{
+  --bg:#160d14; --bg2:#1e121c; --panel:rgba(52,32,45,.5); --panel-2:rgba(42,25,37,.66);
+  --line:rgba(255,182,214,.16); --line-2:rgba(255,182,214,.28);
+  --pink:#e29ec0; --pink-br:#ffb6d6; --pink-dp:#a9698a;
+  --peach:#e0925f; --peach-br:#f2b487; --ember:#e58aa6; --gold:#e6c07a;
+  --ink:#f9eff4; --muted:#c9afbe; --muted-2:#9c8494;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  --radius:20px; --shadow:0 24px 60px rgba(0,0,0,.5);
+  --rail-w:0px; --nav-h:74px;
+  /* ============ ẢNH — ĐẶT CÁC FILE NÀY CÙNG THƯ MỤC VỚI HTML ============
+     • avatar.jpg      → ảnh chân dung (khung tròn)
+     • background.jpg  → ảnh nền toàn trang
+     • CLUB.jpg        → ảnh hoạt động CLB
+     • YOUTH UNION.jpg → ảnh hoạt động Đoàn trường
+     • music.mp3       → nhạc nền
+     Muốn nền mờ hơn: tăng --bg-dim (0 = sáng rõ, 1 = tối). */
+  --avatar-img:url('avatar.jpg');
+  --bg-img:url('background.jpg');
+  --bg-dim:.82;
+  --asa:data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2060%2052%22%3E%3Cg%20stroke%3D%22%23ffb6d6%22%20stroke-width%3D%221%22%20fill%3D%22none%22%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%22112.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%2213.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%220.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2252.0%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%2290.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2237.5%22%20y1%3D%2265.0%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%220.0%22%20y2%3D%22-52.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%22-39.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2226.0%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-52.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-60.0%22%20y1%3D%220.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2267.5%22%20y1%3D%2265.0%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%2222.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%2265.0%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2267.5%22%20y2%3D%22-39.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2282.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2230.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-22.5%22%20y1%3D%2239.0%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%22-15.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2226.0%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%2297.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%22-15.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%2265.0%22%20x2%3D%22105.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%22105.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%22-52.0%22%20x2%3D%22105.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%2239.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%220.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2237.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%22-26.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%2213.0%22%20x2%3D%22105.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%2239.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%2275.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%22-39.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2277.9%22%20x2%3D%2230.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2282.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2267.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%22112.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2277.9%22%20x2%3D%22-30.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2252.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2226.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%227.5%22%20y1%3D%2265.0%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%227.5%22%20y2%3D%22-39.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%2222.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2260.0%22%20y2%3D%22-52.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%22-52.0%22%20x2%3D%2230.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%22-52.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2252.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2277.9%22%20x2%3D%2290.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%2290.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%22-30.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%2222.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2237.5%22%20y1%3D%2213.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-52.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%22103.9%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%22-13.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%220.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2267.5%22%20y1%3D%2213.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%220.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%22-26.0%22%20x2%3D%22-22.5%22%20y2%3D%22-39.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2237.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2252.0%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2267.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%2297.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2226.0%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%22-26.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2237.5%22%20y1%3D%2239.0%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%2290.9%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2277.9%22%20x2%3D%2260.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2260.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%22105.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%22-7.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2230.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%22-26.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%227.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%22103.9%22%20x2%3D%22105.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%227.5%22%20y1%3D%22-13.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2226.0%22%20x2%3D%22-22.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%2290.9%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2215.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%227.5%22%20y1%3D%2213.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2282.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2277.9%22%20x2%3D%22-22.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%22-22.5%22%20y1%3D%2213.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2237.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%22-52.0%22%20x2%3D%220.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%22-26.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2237.5%22%20y2%3D%2290.9%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%22103.9%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2230.0%22%20y2%3D%22-52.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2230.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2252.0%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%2290.9%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%227.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%22112.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%2297.5%22%20y2%3D%2290.9%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%2290.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2226.0%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%22-39.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2245.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%22105.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2267.5%22%20y1%3D%2239.0%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%2239.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%22105.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%2213.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2252.0%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%227.5%22%20y2%3D%2290.9%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%22-26.0%22%20x2%3D%22-30.0%22%20y2%3D%22-52.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%22-26.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-52.5%22%20y1%3D%2239.0%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2215.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%22-52.0%22%20x2%3D%2260.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%2290.9%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%2239.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%2239.0%22%20x2%3D%22105.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2237.5%22%20y1%3D%22-13.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%22-7.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2267.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2226.0%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%2265.0%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%220.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%2290.9%22%20x2%3D%22105.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%22-52.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%22120.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%22-30.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%227.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%2275.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%227.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-52.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2277.9%22%20x2%3D%220.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%22-13.0%22%20x2%3D%22105.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%22103.9%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2267.5%22%20y2%3D%2290.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%2297.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-52.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%22-52.0%22%20x2%3D%2290.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%2215.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%2213.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2277.9%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%2275.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2267.5%22%20y1%3D%22-13.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%22-52.0%22%20x2%3D%22-30.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%2215.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%2252.0%22%20x2%3D%22120.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%22-39.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2267.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%2297.5%22%20y2%3D%22-39.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%22-26.0%22%20x2%3D%22-22.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-22.5%22%20y1%3D%2265.0%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%2213.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%22112.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2215.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2226.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2277.9%22%20x2%3D%2230.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%22-52.0%22%20x2%3D%2245.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%2297.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2277.9%22%20x2%3D%2290.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2226.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%2290.0%22%20y2%3D%22-52.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2245.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%22-52.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%22-13.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2277.9%22%20x2%3D%22-30.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2226.0%22%20x2%3D%22-22.5%22%20y2%3D%2213.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%22-26.0%22%20x2%3D%2260.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%22105.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2277.9%22%20x2%3D%22-22.5%22%20y2%3D%2290.9%22%2F%3E%3Cline%20x1%3D%2282.5%22%20y1%3D%22-39.0%22%20x2%3D%22105.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2237.5%22%20y2%3D%22-39.0%22%2F%3E%3Cline%20x1%3D%22-7.5%22%20y1%3D%22-13.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2252.0%22%20x2%3D%220.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2252.5%22%20y1%3D%22-13.0%22%20x2%3D%2275.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%22-7.5%22%20y2%3D%2239.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%22-26.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%22103.9%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-52.5%22%20y1%3D%22-13.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%220.0%22%20x2%3D%2282.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%2252.0%22%20x2%3D%2252.5%22%20y2%3D%2265.0%22%2F%3E%3Cline%20x1%3D%22-52.5%22%20y1%3D%2213.0%22%20x2%3D%22-30.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%22-15.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-52.5%22%20y1%3D%2265.0%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2245.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2222.5%22%20y1%3D%2265.0%22%20x2%3D%2245.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%22-37.5%22%20y1%3D%2265.0%22%20x2%3D%22-15.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2260.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%22-26.0%22%20x2%3D%22105.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2260.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%2226.0%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2230.0%22%20y1%3D%220.0%22%20x2%3D%2252.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%227.5%22%20y1%3D%2239.0%22%20x2%3D%2230.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%2226.0%22%20x2%3D%2290.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%22-26.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%220.0%22%20y1%3D%220.0%22%20x2%3D%2222.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-22.5%22%20y1%3D%22-13.0%22%20x2%3D%220.0%22%20y2%3D%220.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%22-26.0%22%20x2%3D%2237.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-45.0%22%20y1%3D%2277.9%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%2252.0%22%20x2%3D%220.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%2277.9%22%20x2%3D%22-15.0%22%20y2%3D%22103.9%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2252.0%22%20x2%3D%2275.0%22%20y2%3D%2277.9%22%2F%3E%3Cline%20x1%3D%2275.0%22%20y1%3D%220.0%22%20x2%3D%2275.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2215.0%22%20y1%3D%2226.0%22%20x2%3D%2245.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%22-15.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2290.0%22%20y1%3D%220.0%22%20x2%3D%22105.0%22%20y2%3D%2226.0%22%2F%3E%3Cline%20x1%3D%2245.0%22%20y1%3D%2277.9%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-60.0%22%20y1%3D%2252.0%22%20x2%3D%22-30.0%22%20y2%3D%2252.0%22%2F%3E%3Cline%20x1%3D%22-30.0%22%20y1%3D%220.0%22%20x2%3D%22-7.5%22%20y2%3D%22-13.0%22%2F%3E%3Cline%20x1%3D%22-15.0%22%20y1%3D%22-26.0%22%20x2%3D%2215.0%22%20y2%3D%22-26.0%22%2F%3E%3Cline%20x1%3D%2260.0%22%20y1%3D%2226.0%22%20x2%3D%2260.0%22%20y2%3D%2252.0%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans); color:var(--ink); background:var(--bg);
+  -webkit-font-smoothing:antialiased; line-height:1.6; overflow-x:hidden;
+}
+/* Ảnh nền toàn trang, phủ tối để chữ rõ */
+.bg-layer{position:fixed;inset:0;z-index:-3;background:var(--bg-img) center/cover no-repeat fixed;filter:saturate(1.05)}
+.bg-veil{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(70% 55% at 78% 12%,rgba(255,150,200,.14),transparent 60%),
+    radial-gradient(60% 50% at 10% 90%,rgba(224,146,95,.10),transparent 60%),
+    linear-gradient(180deg,rgba(16,9,14,var(--bg-dim)),rgba(16,9,14,calc(var(--bg-dim) + .06)))}
+#petals{position:fixed;inset:0;z-index:-1;pointer-events:none}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(255,182,214,.28);color:#fff}
+
+/* ==================== SHELL ==================== */
+.shell{display:block}
+.content{padding-top:var(--nav-h);min-height:100vh;position:relative;z-index:1}
+
+/* ==================== LEFT IDENTITY RAIL ==================== */
+.rail{
+  position:fixed;left:0;top:0;width:var(--rail-w);height:100vh;z-index:20;
+  display:flex;flex-direction:column;gap:22px;padding:40px 34px 26px;
+  background:linear-gradient(160deg,rgba(38,22,33,.9),rgba(23,13,20,.94));
+  border-right:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  overflow:auto;
+}
+.rail::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--asa);background-size:58px;opacity:.05;pointer-events:none}
+.rail::-webkit-scrollbar{width:0}
+/* portrait + bow */
+/* avatar TRÒN + viền asanoha (như bản cũ) + nơ */
+.portrait{position:relative;width:176px;align-self:center;margin-top:6px}
+.portrait .ring{position:relative;width:176px;height:176px;border-radius:50%;padding:9px;
+  background-color:#3a2233;background-image:var(--asa);background-size:17px;
+  box-shadow:0 16px 34px rgba(0,0,0,.5),0 0 24px rgba(255,182,214,.18)}
+.portrait .frame{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:#241521 var(--avatar-img) center 16%/cover no-repeat;box-shadow:0 0 0 3px #1a0f16}
+.portrait .frame .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:2.1rem;color:rgba(255,182,214,.4);z-index:-1}
+.portrait-bow{position:absolute;top:-12px;right:-14px;width:86px;height:auto;z-index:3;
+  filter:drop-shadow(0 4px 7px rgba(0,0,0,.4));transform:rotate(-14deg);transform-origin:60% 40%;
+  animation:bowBob 5s ease-in-out infinite}
+
+/* ===== HỌA TIẾT DEMON SLAYER · NEZUKO (nền phải) ===== */
+.side-r{position:fixed;top:50%;right:13px;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;
+  font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,182,214,.36);z-index:6;pointer-events:none;white-space:nowrap}
+.side-r .jp{color:rgba(240,180,135,.55);font-family:var(--serif);letter-spacing:2px}
+.kanji-float{position:fixed;inset:0 0 0 var(--rail-w);z-index:-1;pointer-events:none;overflow:hidden}
+.kanji-float span{position:absolute;font-family:var(--serif);font-weight:800;color:rgba(255,150,200,.055);
+  font-size:clamp(4.5rem,11vw,10rem);line-height:1;animation:kf 13s ease-in-out infinite}
+@keyframes kf{0%,100%{opacity:.55;transform:translateY(10px)}50%{opacity:1;transform:translateY(-12px)}}
+.branch{position:fixed;z-index:-1;pointer-events:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.4))}
+.branch.tr{top:-8px;right:-6px;width:min(360px,30vw);transform-origin:92% 6%;animation:branchWind 5s ease-in-out infinite}
+.branch.bl{bottom:-14px;left:calc(var(--rail-w) - 10px);width:min(220px,20vw);transform:scaleX(-1)}
+/* cành đào đung đưa rõ như có gió */
+@keyframes branchWind{
+  0%,100%{transform:rotate(-3.4deg) translateX(0)}
+  30%{transform:rotate(3.8deg) translateX(-5px)}
+  60%{transform:rotate(-1.6deg) translateX(2px)}
+  82%{transform:rotate(2.4deg) translateX(-2px)}
+}
+/* các chùm hoa khẽ rung riêng cho sống động */
+.branch .pt{transform-box:fill-box;transform-origin:center;animation:petalBreathe 3.4s ease-in-out infinite}
+@keyframes petalBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.branch .br{fill:none;stroke:#7a5334;stroke-width:5;stroke-linecap:round}
+.branch .brs{fill:none;stroke:#8a6340;stroke-width:3;stroke-linecap:round}
+.branch .pt{fill:var(--pink-br)} .branch .pc{fill:#ff8fbe} .branch .bd{fill:#ffc7de}
+/* watermark kanji lớn mỗi mục (lấp khoảng phải) */
+.sec-wm{position:absolute;top:clamp(48px,7vh,90px);right:2%;font-family:var(--serif);font-weight:800;
+  font-size:clamp(6rem,13vw,12rem);line-height:.8;color:rgba(255,182,214,.05);z-index:0;pointer-events:none;user-select:none}
+@keyframes bowBob{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(-9deg) translateY(-1px)}}
+/* identity text */
+.rail .who{text-align:center}
+.rail .who .kanji{font-family:var(--serif);font-size:.7rem;letter-spacing:5px;color:var(--pink-br);opacity:.8;text-transform:uppercase}
+.rail .who h1{font-family:var(--serif);font-weight:800;font-size:2rem;line-height:1.05;margin:8px 0 6px;letter-spacing:.3px}
+.rail .who h1 em{font-style:normal;font-weight:inherit;color:inherit}
+.rail .who .role{font-size:.82rem;color:var(--muted);letter-spacing:.3px}
+.rail .who .role b{color:var(--peach-br);font-weight:600}
+.avail{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:.72rem;font-weight:600;letter-spacing:.4px;
+  padding:6px 13px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,182,214,.08);color:var(--pink-br)}
+.avail .dot{width:7px;height:7px;border-radius:50%;background:var(--pink-br);box-shadow:0 0 0 0 rgba(255,182,214,.6);animation:pl 2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(255,182,214,.5)}70%{box-shadow:0 0 0 9px rgba(255,182,214,0)}100%{box-shadow:0 0 0 0 rgba(255,182,214,0)}}
+.rail .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
+/* vertical nav */
+.rail-nav{display:flex;flex-direction:column;gap:2px}
+.rail-nav a{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;font-size:.9rem;color:var(--muted);transition:.22s;position:relative}
+.rail-nav a .idx{font-family:var(--serif);font-size:.72rem;color:var(--muted-2);width:20px;transition:.22s}
+.rail-nav a .bar{position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:3px;height:60%;border-radius:3px;background:var(--pink-br);transition:.25s}
+.rail-nav a:hover{color:var(--ink);background:rgba(255,182,214,.06)}
+.rail-nav a.active{color:var(--pink-br);background:rgba(255,182,214,.09)}
+.rail-nav a.active .idx{color:var(--pink-br)}
+.rail-nav a.active .bar{transform:translateY(-50%) scaleY(1)}
+/* contacts + footer */
+.rail-contact{display:flex;flex-direction:column;gap:9px;font-size:.82rem;color:var(--muted)}
+.rail-contact a,.rail-contact span{display:flex;align-items:center;gap:10px;transition:.2s}
+.rail-contact a:hover{color:var(--pink-br)}
+.rail-contact .ic{width:15px;text-align:center;opacity:.9}
+.rail-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--line);font-size:.68rem;color:var(--muted-2)}
+.mbtn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line-2);background:rgba(255,182,214,.06);color:var(--muted);cursor:pointer;display:grid;place-items:center;transition:.2s;flex:none}
+.mbtn:hover{color:var(--pink-br);border-color:var(--pink-br)}
+.mbtn svg{width:18px;height:18px}
+.mbtn .on{display:none}.mbtn.playing .on{display:block}.mbtn.playing .off{display:none}
+.mbtn.playing{color:var(--pink-br);border-color:var(--pink-br)}
+
+/* ==================== CONTENT / EDITORIAL ==================== */
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
+section{padding:clamp(64px,8vh,110px) 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--peach-br);font-weight:600;margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--peach-br);opacity:.7}
+.sec-num{font-family:var(--serif);font-size:.9rem;color:var(--pink-dp);letter-spacing:2px}
+.sec-title{font-family:var(--serif);font-weight:800;line-height:1.04;letter-spacing:.3px;font-size:clamp(2.1rem,4.6vw,3.4rem)}
+.sec-title em{font-style:normal;font-weight:inherit;color:inherit}
+.sec-head-row{display:flex;align-items:baseline;gap:18px;margin-bottom:34px}
+.lead{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,2.7vw,2.15rem);line-height:1.34;letter-spacing:.2px}
+.lead .hl{font-style:italic;color:var(--pink-br)}
+.muted{color:var(--muted)}
+.body-t{color:var(--muted);font-size:1rem;line-height:1.75;max-width:58ch}
+
+/* INTRO */
+.intro{padding-top:clamp(56px,9vh,120px)}
+.intro .lead{margin:10px 0 30px;max-width:20ch}
+.intro .sub{color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:60ch;margin-bottom:44px}
+.intro .sub b{color:var(--ink);font-weight:600}
+/* stats */
+.stats{display:flex;flex-wrap:wrap;gap:clamp(26px,4vw,60px);border-top:1px solid var(--line);padding-top:30px}
+.stat .n{font-family:var(--serif);font-weight:800;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--pink-br)}
+.stat .n small{font-size:.42em;color:var(--muted-2);font-weight:600;font-family:var(--sans)}
+.stat .l{font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* generic feature block — THẺ RIÊNG, tách rõ */
+.feature{display:grid;grid-template-columns:1fr;gap:8px;position:relative;
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(24px,3vw,36px);margin-bottom:26px;box-shadow:0 14px 32px rgba(0,0,0,.26)}
+
+/* ===== HOVER: mở nội dung TRÁI → PHẢI, hiện từng phần ===== */
+.feature,.act,.skill-box,.edu-card{position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.feature:hover,.act:hover,.skill-box:hover,.edu-card:hover{
+  transform:translateY(-5px);border-color:var(--line-2);
+  box-shadow:0 22px 48px rgba(0,0,0,.42),0 0 24px rgba(255,182,214,.15)}
+/* dải sáng quét trái→phải */
+.feature::before,.act::before,.skill-box::before,.edu-card::before{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,182,214,.16) 42%,rgba(255,225,238,.06) 54%,transparent 72%);
+  transform:translateX(-115%);transition:transform .85s cubic-bezier(.3,.7,.2,1)}
+.feature:hover::before,.act:hover::before,.skill-box:hover::before,.edu-card:hover::before{transform:translateX(115%)}
+/* vạch nhấn hồng chạy trái→phải ở đáy thẻ */
+.feature::after,.act::after,.skill-box::after,.edu-card::after{
+  content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;z-index:4;
+  background:linear-gradient(90deg,var(--pink-br),var(--peach-br));transform:scaleX(0);transform-origin:left;
+  transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.feature:hover::after,.act:hover::after,.skill-box:hover::after,.edu-card:hover::after{transform:scaleX(1)}
+/* nội dung hiện "từng phần" trượt nhẹ trái→phải khi hover */
+.feature li,.act li{transition:transform .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.feature:hover li:nth-child(2),.act:hover li:nth-child(2){transition-delay:.08s}
+.feature:hover li:nth-child(3),.act:hover li:nth-child(3){transition-delay:.16s}
+.feature:hover li,.act:hover li{transform:translateX(7px)}
+.feature:hover li::before,.act:hover li::before{color:var(--peach-br)}
+.skill-box .chip{transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .2s,color .2s}
+.skill-box:hover .chip{transform:translateX(5px)}
+.skill-box:hover .chip:nth-child(2){transition-delay:.06s}
+.skill-box:hover .chip:nth-child(3){transition-delay:.12s}
+.skill-box:hover .chip:nth-child(4){transition-delay:.18s}
+.skill-box:hover .chip:nth-child(5){transition-delay:.24s}
+.feat-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.feat-when{font-size:.76rem;font-weight:600;letter-spacing:.5px;color:var(--peach-br)}
+.feat-tag{font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:6px;background:linear-gradient(135deg,var(--ember),#b1567f);color:#fff}
+.feature h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.35rem,2.4vw,1.9rem);line-height:1.15;margin:4px 0 2px}
+.feature .role-line{color:var(--pink-br);font-weight:600;font-size:.95rem;margin-bottom:10px}
+.feature ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:8px;max-width:66ch}
+.feature ul li{position:relative;padding-left:24px;color:var(--muted);font-size:.97rem;line-height:1.7}
+.feature ul li::before{content:"❋";position:absolute;left:0;top:0;color:var(--pink-br);font-size:.82rem}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.chip{font-size:.8rem;font-weight:500;color:var(--muted);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,182,214,.05);transition:.2s}
+.chip:hover{border-color:var(--line-2);color:var(--ink)}
+.chip.key{color:var(--pink-br);border-color:var(--line-2);background:rgba(255,182,214,.09)}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.links a{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--pink-br);padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);transition:.22s}
+.links a:hover{background:rgba(255,182,214,.12);transform:translateY(-2px)}
+
+/* about grid */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,54px);align-items:start}
+.edu-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--panel-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.edu-card h4{font-family:var(--serif);font-weight:700;font-size:1.15rem;margin-bottom:3px}
+.edu-card .when{font-size:.76rem;color:var(--peach-br);font-weight:600;margin-bottom:14px}
+.edu-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-top:1px dashed var(--line);font-size:.9rem}
+.edu-row:first-of-type{border-top:0}
+.edu-row .k{color:var(--muted)}.edu-row .v{color:var(--ink);font-weight:600;text-align:right}
+.acca-mods{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.mod{font-size:.72rem;font-weight:600;padding:5px 9px;border-radius:7px;border:1px solid var(--line);color:var(--muted)}
+.mod.done{color:var(--pink-br);border-color:var(--line-2);background:rgba(255,182,214,.08)}
+.mod.cur{color:var(--peach-br);border-color:rgba(240,180,135,.4);background:rgba(224,146,95,.1)}
+
+/* activities editorial with photo */
+.act{display:grid;grid-template-columns:1fr;gap:0;position:relative;
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(24px,3vw,34px);margin-bottom:26px;box-shadow:0 14px 32px rgba(0,0,0,.26)}
+.act .act-fig{overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#160c14;margin-bottom:20px;box-shadow:0 16px 36px rgba(0,0,0,.4)}
+.act .act-fig img{display:block;width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.act:hover .act-fig img{transform:scale(1.03)}
+
+/* skills */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:8px}
+.skill-box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:var(--panel-2)}
+.skill-box h4{font-family:var(--serif);font-weight:700;font-size:1.12rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.skill-box h4 .jp{font-size:.9rem;color:var(--peach-br);font-family:var(--serif)}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,50px);align-items:start;margin-top:8px}
+.cinfo{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.cinfo .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,182,214,.08);border:1px solid var(--line);font-size:1.1rem;flex:none}
+.cinfo small{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2)}
+.cinfo b{font-size:.98rem;font-weight:600}
+.form .field{margin-bottom:14px}
+.form label{display:block;font-size:.76rem;letter-spacing:.5px;color:var(--muted);margin-bottom:6px}
+.form input,.form textarea{width:100%;padding:12px 15px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-family:inherit;font-size:.92rem;transition:.2s}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--pink-br);background:rgba(255,182,214,.05)}
+.form textarea{min-height:100px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:12px;border:0;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:.92rem;color:#2a1420;background:linear-gradient(135deg,var(--pink-br),var(--ember));transition:.22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,182,214,.25)}
+.form-note{margin-top:12px;font-size:.82rem;color:var(--pink-br);opacity:0;transition:.3s}
+.form-note.show{opacity:1}
+
+/* contact CTA */
+.contact-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn.cta{width:auto;padding:15px 26px;font-size:.95rem}
+.pill{display:inline-flex;align-items:center;padding:14px 22px;border-radius:999px;font-size:.9rem;font-weight:600;
+  color:var(--pink-br);border:1px solid var(--line-2);background:rgba(255,182,214,.07);transition:.22s}
+.pill:hover{background:rgba(255,182,214,.14);transform:translateY(-2px)}
+.pill.soft{color:var(--muted);border-color:var(--line)}
+
+/* footer */
+.foot{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--muted-2);font-size:.82rem;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
+.foot .jp{font-family:var(--serif);letter-spacing:6px;color:var(--pink-dp)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ==================== TOP NAV ==================== */
+.topnav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(18px,4vw,54px);
+  background:rgba(22,13,20,.55);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);
+  border-bottom:1px solid var(--line);transition:background .3s,box-shadow .3s}
+.topnav.scrolled{background:rgba(17,10,15,.9);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.brand{display:flex;align-items:center;gap:15px}
+.brand-mark{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,var(--pink-br),var(--ember));color:#2a1420;font-family:var(--serif);font-weight:700;font-size:1.35rem;box-shadow:0 6px 16px rgba(255,182,214,.3)}
+.brand-txt{display:flex;flex-direction:column;gap:5px;font-family:var(--serif);font-weight:700;font-size:1.08rem;line-height:1;letter-spacing:.3px}
+.brand-txt small{font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:1.8px;line-height:1;text-transform:uppercase;color:var(--muted-2)}
+.topmenu{display:flex;gap:4px}
+.topmenu a{padding:9px 14px;border-radius:10px;font-size:.9rem;color:var(--muted);transition:.2s;white-space:nowrap}
+.topmenu a:hover{color:var(--ink);background:rgba(255,182,214,.07)}
+.topmenu a.active{color:var(--pink-br);background:rgba(255,182,214,.1)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-cta{padding:10px 22px;border-radius:999px;font-size:.88rem;font-weight:600;color:#2a1420;white-space:nowrap;
+  background:linear-gradient(135deg,var(--pink-br),var(--ember));transition:.2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,182,214,.3)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ==================== HERO 2-COL ==================== */
+.hero2{position:relative;padding:clamp(30px,6vh,72px) 0 clamp(44px,6vh,80px)}
+.hero-wm{top:auto;bottom:-6%;right:1%;font-size:clamp(9rem,20vw,20rem);opacity:.045}
+.hero2-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,68px);align-items:center}
+.hero-name{font-family:var(--serif);font-weight:800;font-size:clamp(2.7rem,6vw,4.6rem);line-height:1.02;letter-spacing:.3px;margin:12px 0 10px}
+.hero-role{font-size:1.05rem;color:var(--muted);margin-bottom:16px;max-width:42ch}
+.hero-role b{color:var(--peach-br);font-weight:600}
+.hero-desc{color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:50ch;margin-bottom:26px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px;align-items:center}
+.hero-cta .btn.cta{width:auto;padding:14px 30px}
+/* hero photo */
+.hero-photo{position:relative;width:min(420px,86vw);aspect-ratio:1;margin:0 auto;display:grid;place-items:center}
+.hero-photo .blob{position:absolute;inset:4%;z-index:1;border-radius:46% 54% 52% 48%/48% 46% 54% 52%;
+  background:radial-gradient(circle at 42% 34%,rgba(255,182,214,.32),rgba(224,146,95,.14) 66%,transparent 78%);
+  filter:blur(4px);animation:blobm 9s ease-in-out infinite}
+@keyframes blobm{0%,100%{border-radius:46% 54% 52% 48%/48% 46% 54% 52%}50%{border-radius:56% 44% 47% 53%/53% 55% 45% 47%}}
+.hero-photo .ring{position:relative;z-index:2;width:76%;height:76%;border-radius:50%;padding:11px;
+  background-color:#3a2233;background-image:var(--asa);background-size:20px;
+  box-shadow:0 24px 54px rgba(0,0,0,.5),0 0 34px rgba(255,182,214,.22)}
+.hero-photo .frame{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:#241521 var(--avatar-img) center 16%/cover no-repeat;box-shadow:0 0 0 3px #1a0f16}
+.hero-photo .frame .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:2.8rem;color:rgba(255,182,214,.4);z-index:-1}
+.hero-photo .portrait-bow{position:absolute;top:2%;right:8%;width:118px;height:auto;z-index:6;transform:rotate(-14deg);transform-origin:60% 40%;animation:bowBob 5s ease-in-out infinite;filter:drop-shadow(0 5px 9px rgba(0,0,0,.42))}
+.float-ic{position:absolute;z-index:5;font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--pink-br);
+  width:48px;height:48px;display:grid;place-items:center;border-radius:15px;
+  background:var(--panel-2);border:1px solid var(--line-2);box-shadow:0 10px 24px rgba(0,0,0,.4);
+  backdrop-filter:blur(6px);animation:floaty 5s ease-in-out infinite}
+.float-ic.f1{top:0;left:2%}
+.float-ic.f2{bottom:12%;left:-4%;color:var(--peach-br);animation-delay:.8s}
+.float-ic.f3{top:22%;right:-4%;animation-delay:1.6s}
+.float-ic.f4{bottom:2%;right:16%;color:var(--pink-br);animation-delay:2.3s}
+.float-ic.f5{top:-3%;right:32%;color:var(--peach-br);animation-delay:1.1s}
+@keyframes floaty{0%,100%{transform:translateY(7px)}50%{transform:translateY(-9px)}}
+
+/* ==================== PARTNERS ==================== */
+.partners{padding:clamp(22px,3vh,32px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(20,12,18,.4)}
+.partners-label{text-align:center;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted-2);margin-bottom:16px}
+.partners-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(18px,4vw,46px)}
+.partners-row span{font-family:var(--serif);font-weight:700;font-size:clamp(1rem,1.8vw,1.4rem);color:var(--muted);opacity:.72;transition:.25s;white-space:nowrap}
+.partners-row span:hover{opacity:1;color:var(--pink-br)}
+
+/* ==================== HIGHLIGHT (số liệu + trọng tâm) ==================== */
+.hl-block{padding:clamp(48px,8vh,96px) 0;position:relative}
+.hl-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(30px,5vw,64px);align-items:start}
+.hl-num .big{font-family:var(--serif);font-weight:800;font-size:clamp(4.6rem,9vw,7.2rem);line-height:.88;color:var(--pink-br)}
+.hl-num .big span{font-size:.36em;color:var(--muted-2)}
+.hl-num .big-l{font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-top:8px}
+.hl-num .big-sub{color:var(--muted);font-size:.9rem;margin-top:4px}
+.mini-stats{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:13px}
+.mini-stats li{font-size:.94rem;color:var(--muted);border-left:2px solid var(--line-2);padding-left:14px}
+.mini-stats li b{font-family:var(--serif);color:var(--ink);font-size:1.25rem;margin-right:7px}
+.hl-cards .sec-title{font-size:clamp(1.7rem,3vw,2.4rem)}
+.focus-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.focus-card{position:relative;background:var(--panel-2);border:1px solid var(--line);border-radius:18px;padding:24px 20px;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.focus-card:hover{transform:translateY(-6px);border-color:var(--line-2);box-shadow:0 22px 44px rgba(0,0,0,.42)}
+.focus-card.dark{background:linear-gradient(160deg,#3c1f31,#241320)}
+.focus-card .fic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:1.25rem;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--pink-br),var(--ember));box-shadow:0 8px 20px rgba(255,182,214,.28)}
+.focus-card h4{font-family:var(--serif);font-weight:700;font-size:1.08rem;margin-bottom:8px}
+.focus-card p{color:var(--muted);font-size:.87rem;line-height:1.6}
+
+/* ==================== RESPONSIVE ==================== */
+@media(max-width:1000px){
+  .about-grid{grid-template-columns:1fr}
+  .side-r{display:none}
+  .kanji-float{inset:0}
+  .sec-wm{opacity:.04;right:-3%;font-size:clamp(4rem,20vw,8rem)}
+  .branch.tr{width:44vw}
+  /* nav → menu xổ xuống */
+  .topmenu{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;gap:2px;
+    background:rgba(17,10,15,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    padding:14px clamp(18px,4vw,40px);border-bottom:1px solid var(--line);
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:.28s}
+  .topmenu.open{transform:none;opacity:1;pointer-events:auto}
+  .topmenu a{padding:12px 14px;font-size:1rem}
+  .burger{display:flex}
+  .brand-txt small{display:none}
+  /* hero xếp dọc */
+  .hero2-inner{grid-template-columns:1fr;gap:28px;text-align:center}
+  .hero2-left{order:2}
+  .hero2-right{order:1}
+  .hero-role,.hero-desc{max-width:none;margin-left:auto;margin-right:auto}
+  .hero-cta{justify-content:center}
+  /* khối số liệu xếp dọc */
+  .hl-grid{grid-template-columns:1fr;gap:30px}
+  .focus-row{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .skill-grid,.contact-grid{grid-template-columns:1fr}
+  .sec-head-row{flex-direction:column;gap:6px}
+  .nav-cta{display:none}
+  .focus-row{grid-template-columns:1fr}
+  .partners-row{gap:14px 24px}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.portrait-bow,.float-ic,.blob{animation:none}}
+
+/* ===== CON TRỎ LỬA HỒNG (Huyết Quỷ Thuật) ===== */
+:root{--cur:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAFdElEQVR4nO3YW2wUVRgH8P83sxe2HaywtruAQsDUS4pGQ1AwJm7UBx+QFJOFEKMxmBJjSh8wxgdItrVEjQKJQAwIIQKBmK0hAZPiGxKID9hYJYrh0ljoDWhpt+2y07mc+fvQ2aSBtkDptjHxSza7OXtmzm/PnO87Mwv814OgAED7xgNPMJnWp3p87W4dBEKmTgaE2tGr88znASA9hdBxgUwPQ650tbwyNz6vYuaskq8AIJkECMi0A/FXqQCAhPW38NAMb9aCxxLt1Qe+kNWrFVIn9alCjhnk8Prr2Hj4LA/9Rv7RZbk7T7P1w31vAwBTvOsSedAYc4B8cvyS3BYJhYJlmF0ExIt1fcl8Lxot/fbv5LZnpE44bUAAEBG+1PCRJSIuZhUDrieYa4jx8lNFi15femLosxPnrtZ8twUo3GzecVKmUhoAtFUfWHpjU0MVr7BEi4TOwQUgQhCCZ+MMVcyfFy4yFovIOqZOzpA68QqxJu8A/uy3ecInZwRD3+Dk2aMlK5cswuww4KphgKLAcTzTznmAPNyV7YgBAFKpSQcGxv5KTF0hAIcJzQYwNwLcsjXoGuB5wM1b4rlKSM+zldgAUDvZutGACcADgEg43JwZHHClP8JIyw0dRZqGkgigCLT0AH2mR9MR0bSLC0ouXycpIuJNNvCOSyx1dV46mdZjW9e2EPw+MGAHre5+B793EsUhwAiDbX3IdN6QoCea6PK11NV5aGgoSJKMeomT6aSXqk1phqXX9Gb7y2d53ouD5hAMeRoSLYLz2uMe9nXxek/3vvm73z9E47Imq1erQgDHXNQERSC8nkobMuh+Dl3em/3JCkOPGh4AcXqz/a7lPFc0d/YVkgERcQsBHDfyOwkA3Pj0h3KSHVfb2ryGdNolSdd1/7Esq8LvO07CFRKZosZkWocAJC+0t7fTMAy1Z/du5SOv2bb9wrQh87N4sbExTPJSV1cXY7GYCgaD3Lp1a34mM6ZpvjotyDywqakpSPJSZ2cn4/G4Ki0tZSAQ4ObNm12SVEqZjuNUTjlyNGAsFlPRaJTxeJy6rrOmpkZxODzLst6dTOSEaxdJKKVQWlqKXbt2aevWraNSiqFQ6IBt29Ui4pIMjEy0KQXmw3VdlJWV4eDBg7JmzRrJ5XJeMBjcOTQ0tMkvPdqDICel+ueRx44dk1WrVkkmk1HhcHiL4zhfiogCIBNFTtr25DgOYrEYTp8+LZWVlXpPT48bCAQ+Vkrtye/RE0E+MFDXdej68ENeb28vNE3DqVOnsGzZskBzc7Oradp6pdQRALqI8H6RE840EYGu6+jv74eIoLi4GIlEAmVlZRARlclkeOTIEZSXlw8ZhrEWgEHyHQCDJCFyb48LEwLmcTdv3sTKlSuRy+XQ0tKCxsbGfJeRz835Md4EsEJEDvsl6J727vsGighEBN3d3aiuruaOHTs4MDCgVVRU4MyZM1y+fDlt296vadoFTdNUMBi0ADgATAA/+aeZvDuf2wt1R0cHI5GIqq+vzxdnkmRVVRUrKysdknQcZ/ukAe4X2NbWxr1799r+HtxlmuZ6kub58+cZjUa91tZWj+RQX1/fQr9Qh/z3By7a4wJJBkleIJm/QWixLGsxACilGkl6iUTC3bBhg0OSlmXV+8cVdl++Ddjm434l+ajfrmez2TdI8vjx42rOnDkql8t5JDu7u7tnjjxHQZH+6xDJH3t7e0v89oDfHiD5p1KKCxcuVLW1tS5JZrPZqny/ggLHQGsjBzdNcwNJ7t+/39q+fbvlz/QFklr+B04FSm4fzP8sJKMk+0ck9jWSm/LAguPGixGzucl13Sbbtj8g+ci0om6P0WaJ5JT/ZTxujMj4wtS8/2MC8S/1uZQs8vxVrQAAAABJRU5ErkJggg==")}
+*{cursor:var(--cur) 12 13,auto!important}
+input,textarea,select{cursor:text!important}
+#curFlame{position:fixed;left:0;top:0;width:40px;height:40px;pointer-events:none;z-index:10001;transform:translate(-200px,-200px);will-change:transform;opacity:0;transition:opacity .22s}
+#curFlame.on{opacity:1}
+#curFlame svg{display:block;overflow:visible}
+#curFlame .flameFx{filter:drop-shadow(0 0 5px rgba(255,120,175,.6))}
+#curFlame .fa{transform-box:fill-box;transform-origin:50% 92%}
+#curFlame .fa1{animation:flk1 .5s ease-in-out infinite}
+#curFlame .fa2{animation:flk2 .38s ease-in-out infinite}
+#curFlame .fa3{animation:flk3 .3s ease-in-out infinite}
+@keyframes flk1{0%,100%{transform:scaleY(1) scaleX(1) rotate(-2.5deg)}30%{transform:scaleY(1.18) scaleX(.9) rotate(1.5deg)}60%{transform:scaleY(.9) scaleX(1.08) rotate(2.5deg)}}
+@keyframes flk2{0%,100%{transform:scaleY(1) scaleX(1) rotate(2deg)}35%{transform:scaleY(1.24) scaleX(.86) rotate(-2deg)}70%{transform:scaleY(.86) scaleX(1.12) rotate(1deg)}}
+@keyframes flk3{0%,100%{transform:scaleY(1.06) scaleX(.97) translateY(-.3px)}40%{transform:scaleY(.84) scaleX(1.12) translateY(.5px)}70%{transform:scaleY(1.16) scaleX(.9)}}
+@media(hover:none){#curFlame{display:none}*{cursor:auto!important}}
+#trail{position:fixed;inset:0;z-index:9990;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="bg-layer" aria-hidden="true"></div>
+<div class="bg-veil" aria-hidden="true"></div>
+<canvas id="petals" aria-hidden="true"></canvas>
+<div class="kanji-float" aria-hidden="true">
+  <span style="top:9%;right:7%">華</span>
+  <span style="top:42%;right:19%">竹</span>
+  <span style="top:68%;right:6%">血</span>
+  <span style="top:26%;right:38%">鬼</span>
+  <span style="bottom:5%;right:28%">刃</span>
+</div>
+<svg class="branch tr" viewBox="0 0 300 240" aria-hidden="true"><path d="M288 6 C232 26 196 64 162 102 C126 142 86 174 34 214" class="br"/><path d="M288 6 Q297 -14 307 -22" class="brs"/><path d="M260 18 Q270 3 280 -0" class="brs"/><path d="M232 35 Q240 21 247 19" class="brs"/><path d="M208 55 Q219 40 230 36" class="brs"/><path d="M185 77 Q198 62 210 59" class="brs"/><path d="M165 99 Q179 85 194 83" class="brs"/><path d="M143 122 Q154 107 166 103" class="brs"/><path d="M119 144 Q130 135 141 138" class="brs"/><path d="M94 166 Q106 155 117 156" class="brs"/><path d="M71 185 Q76 170 80 166" class="brs"/><path d="M46 205 Q50 189 54 185" class="brs"/><circle cx="304.5" cy="-30.9" r="2.7" class="bd"/><circle cx="278.2" cy="-8.3" r="3.1" class="bd"/><circle cx="248.5" cy="11.7" r="2.9" class="bd"/><circle cx="229.9" cy="29.2" r="3.1" class="bd"/><circle cx="212.1" cy="52.5" r="2.9" class="bd"/><circle cx="193.9" cy="76.9" r="3.1" class="bd"/><circle cx="165.0" cy="95.4" r="3.0" class="bd"/><circle cx="142.9" cy="130.2" r="2.2" class="bd"/><circle cx="116.2" cy="146.7" r="2.5" class="bd"/><circle cx="82.1" cy="155.4" r="2.3" class="bd"/><circle cx="52.6" cy="174.0" r="2.2" class="bd"/><g><ellipse cx="311.2" cy="-16.3" rx="6.9" ry="4.6" transform="rotate(140.7 311.2 -16.3)" class="pt"/><ellipse cx="303.1" cy="-15.9" rx="6.9" ry="4.6" transform="rotate(212.7 303.1 -15.9)" class="pt"/><ellipse cx="300.2" cy="-23.4" rx="6.9" ry="4.6" transform="rotate(284.7 300.2 -23.4)" class="pt"/><ellipse cx="306.4" cy="-28.6" rx="6.9" ry="4.6" transform="rotate(356.7 306.4 -28.6)" class="pt"/><ellipse cx="313.3" cy="-24.2" rx="6.9" ry="4.6" transform="rotate(428.7 313.3 -24.2)" class="pt"/><circle cx="306.8" cy="-21.7" r="3.0" class="pc"/></g><g><ellipse cx="299.0" cy="-2.8" rx="5.2" ry="3.5" transform="rotate(161.9 299.0 -2.8)" class="pt"/><ellipse cx="293.2" cy="-4.7" rx="5.2" ry="3.5" transform="rotate(233.9 293.2 -4.7)" class="pt"/><ellipse cx="293.2" cy="-10.9" rx="5.2" ry="3.5" transform="rotate(305.9 293.2 -10.9)" class="pt"/><ellipse cx="299.0" cy="-12.8" rx="5.2" ry="3.5" transform="rotate(377.9 299.0 -12.8)" class="pt"/><ellipse cx="302.7" cy="-7.8" rx="5.2" ry="3.5" transform="rotate(449.9 302.7 -7.8)" class="pt"/><circle cx="297.4" cy="-7.8" r="2.3" class="pc"/></g><g><ellipse cx="283.7" cy="5.9" rx="7.1" ry="4.7" transform="rotate(149.8 283.7 5.9)" class="pt"/><ellipse cx="275.4" cy="5.0" rx="7.1" ry="4.7" transform="rotate(221.8 275.4 5.0)" class="pt"/><ellipse cx="273.6" cy="-3.1" rx="7.1" ry="4.7" transform="rotate(293.8 273.6 -3.1)" class="pt"/><ellipse cx="280.8" cy="-7.3" rx="7.1" ry="4.7" transform="rotate(365.8 280.8 -7.3)" class="pt"/><ellipse cx="287.0" cy="-1.7" rx="7.1" ry="4.7" transform="rotate(437.8 287.0 -1.7)" class="pt"/><circle cx="280.1" cy="-0.2" r="3.1" class="pc"/></g><g><ellipse cx="275.4" cy="9.0" rx="5.2" ry="3.5" transform="rotate(91.4 275.4 9.0)" class="pt"/><ellipse cx="271.7" cy="13.9" rx="5.2" ry="3.5" transform="rotate(163.4 271.7 13.9)" class="pt"/><ellipse cx="265.9" cy="11.9" rx="5.2" ry="3.5" transform="rotate(235.4 265.9 11.9)" class="pt"/><ellipse cx="266.1" cy="5.7" rx="5.2" ry="3.5" transform="rotate(307.4 266.1 5.7)" class="pt"/><ellipse cx="272.0" cy="4.0" rx="5.2" ry="3.5" transform="rotate(379.4 272.0 4.0)" class="pt"/><circle cx="270.2" cy="8.9" r="2.3" class="pc"/></g><g><ellipse cx="249.5" cy="26.2" rx="7.2" ry="4.8" transform="rotate(161.4 249.5 26.2)" class="pt"/><ellipse cx="241.4" cy="23.6" rx="7.2" ry="4.8" transform="rotate(233.4 241.4 23.6)" class="pt"/><ellipse cx="241.3" cy="15.2" rx="7.2" ry="4.8" transform="rotate(305.4 241.3 15.2)" class="pt"/><ellipse cx="249.4" cy="12.5" rx="7.2" ry="4.8" transform="rotate(377.4 249.4 12.5)" class="pt"/><ellipse cx="254.4" cy="19.3" rx="7.2" ry="4.8" transform="rotate(449.4 254.4 19.3)" class="pt"/><circle cx="247.2" cy="19.3" r="3.1" class="pc"/></g><g><ellipse cx="245.1" cy="29.9" rx="5.9" ry="3.9" transform="rotate(117.2 245.1 29.9)" class="pt"/><ellipse cx="238.9" cy="33.1" rx="5.9" ry="3.9" transform="rotate(189.2 238.9 33.1)" class="pt"/><ellipse cx="234.0" cy="28.2" rx="5.9" ry="3.9" transform="rotate(261.2 234.0 28.2)" class="pt"/><ellipse cx="237.2" cy="22.0" rx="5.9" ry="3.9" transform="rotate(333.2 237.2 22.0)" class="pt"/><ellipse cx="244.0" cy="23.1" rx="5.9" ry="3.9" transform="rotate(405.2 244.0 23.1)" class="pt"/><circle cx="239.8" cy="27.2" r="2.6" class="pc"/></g><g><ellipse cx="236.5" cy="42.0" rx="8.8" ry="5.8" transform="rotate(131.9 236.5 42.0)" class="pt"/><ellipse cx="226.5" cy="44.1" rx="8.8" ry="5.8" transform="rotate(203.9 226.5 44.1)" class="pt"/><ellipse cx="221.3" cy="35.2" rx="8.8" ry="5.8" transform="rotate(275.9 221.3 35.2)" class="pt"/><ellipse cx="228.2" cy="27.6" rx="8.8" ry="5.8" transform="rotate(347.9 228.2 27.6)" class="pt"/><ellipse cx="237.6" cy="31.7" rx="8.8" ry="5.8" transform="rotate(419.9 237.6 31.7)" class="pt"/><circle cx="230.0" cy="36.1" r="3.8" class="pc"/></g><g><ellipse cx="220.8" cy="50.1" rx="4.9" ry="3.3" transform="rotate(158.1 220.8 50.1)" class="pt"/><ellipse cx="215.1" cy="48.7" rx="4.9" ry="3.3" transform="rotate(230.1 215.1 48.7)" class="pt"/><ellipse cx="214.8" cy="42.9" rx="4.9" ry="3.3" transform="rotate(302.1 214.8 42.9)" class="pt"/><ellipse cx="220.1" cy="40.8" rx="4.9" ry="3.3" transform="rotate(374.1 220.1 40.8)" class="pt"/><ellipse cx="223.8" cy="45.2" rx="4.9" ry="3.3" transform="rotate(446.1 223.8 45.2)" class="pt"/><circle cx="218.9" cy="45.5" r="2.1" class="pc"/></g><g><ellipse cx="218.2" cy="62.0" rx="8.7" ry="5.8" transform="rotate(110.6 218.2 62.0)" class="pt"/><ellipse cx="209.6" cy="67.7" rx="8.7" ry="5.8" transform="rotate(182.6 209.6 67.7)" class="pt"/><ellipse cx="201.6" cy="61.3" rx="8.7" ry="5.8" transform="rotate(254.6 201.6 61.3)" class="pt"/><ellipse cx="205.2" cy="51.7" rx="8.7" ry="5.8" transform="rotate(326.6 205.2 51.7)" class="pt"/><ellipse cx="215.5" cy="52.2" rx="8.7" ry="5.8" transform="rotate(398.6 215.5 52.2)" class="pt"/><circle cx="210.0" cy="59.0" r="3.8" class="pc"/></g><g><ellipse cx="204.0" cy="68.8" rx="6.4" ry="4.3" transform="rotate(99.7 204.0 68.8)" class="pt"/><ellipse cx="198.7" cy="74.1" rx="6.4" ry="4.3" transform="rotate(171.7 198.7 74.1)" class="pt"/><ellipse cx="192.0" cy="70.6" rx="6.4" ry="4.3" transform="rotate(243.7 192.0 70.6)" class="pt"/><ellipse cx="193.3" cy="63.2" rx="6.4" ry="4.3" transform="rotate(315.7 193.3 63.2)" class="pt"/><ellipse cx="200.7" cy="62.1" rx="6.4" ry="4.3" transform="rotate(387.7 200.7 62.1)" class="pt"/><circle cx="197.7" cy="67.8" r="2.8" class="pc"/></g><g><ellipse cx="200.8" cy="88.3" rx="8.6" ry="5.7" transform="rotate(126.3 200.8 88.3)" class="pt"/><ellipse cx="191.1" cy="91.4" rx="8.6" ry="5.7" transform="rotate(198.3 191.1 91.4)" class="pt"/><ellipse cx="185.2" cy="83.2" rx="8.6" ry="5.7" transform="rotate(270.3 185.2 83.2)" class="pt"/><ellipse cx="191.2" cy="75.0" rx="8.6" ry="5.7" transform="rotate(342.3 191.2 75.0)" class="pt"/><ellipse cx="200.8" cy="78.2" rx="8.6" ry="5.7" transform="rotate(414.3 200.8 78.2)" class="pt"/><circle cx="193.8" cy="83.2" r="3.7" class="pc"/></g><g><ellipse cx="183.2" cy="94.3" rx="5.1" ry="3.4" transform="rotate(128.1 183.2 94.3)" class="pt"/><ellipse cx="177.4" cy="96.0" rx="5.1" ry="3.4" transform="rotate(200.1 177.4 96.0)" class="pt"/><ellipse cx="174.1" cy="91.0" rx="5.1" ry="3.4" transform="rotate(272.1 174.1 91.0)" class="pt"/><ellipse cx="177.8" cy="86.3" rx="5.1" ry="3.4" transform="rotate(344.1 177.8 86.3)" class="pt"/><ellipse cx="183.4" cy="88.4" rx="5.1" ry="3.4" transform="rotate(416.1 183.4 88.4)" class="pt"/><circle cx="179.2" cy="91.2" r="2.2" class="pc"/></g><g><ellipse cx="172.4" cy="105.5" rx="7.1" ry="4.8" transform="rotate(107.6 172.4 105.5)" class="pt"/><ellipse cx="165.7" cy="110.4" rx="7.1" ry="4.8" transform="rotate(179.6 165.7 110.4)" class="pt"/><ellipse cx="158.9" cy="105.6" rx="7.1" ry="4.8" transform="rotate(251.6 158.9 105.6)" class="pt"/><ellipse cx="161.4" cy="97.6" rx="7.1" ry="4.8" transform="rotate(323.6 161.4 97.6)" class="pt"/><ellipse cx="169.8" cy="97.5" rx="7.1" ry="4.8" transform="rotate(395.6 169.8 97.5)" class="pt"/><circle cx="165.6" cy="103.3" r="3.1" class="pc"/></g><g><ellipse cx="159.3" cy="114.6" rx="5.4" ry="3.6" transform="rotate(109.2 159.3 114.6)" class="pt"/><ellipse cx="154.0" cy="118.2" rx="5.4" ry="3.6" transform="rotate(181.2 154.0 118.2)" class="pt"/><ellipse cx="149.0" cy="114.4" rx="5.4" ry="3.6" transform="rotate(253.2 149.0 114.4)" class="pt"/><ellipse cx="151.1" cy="108.4" rx="5.4" ry="3.6" transform="rotate(325.2 151.1 108.4)" class="pt"/><ellipse cx="157.4" cy="108.5" rx="5.4" ry="3.6" transform="rotate(397.2 157.4 108.5)" class="pt"/><circle cx="154.2" cy="112.8" r="2.3" class="pc"/></g><g><ellipse cx="148.2" cy="139.2" rx="7.6" ry="5.0" transform="rotate(102.0 148.2 139.2)" class="pt"/><ellipse cx="141.6" cy="145.2" rx="7.6" ry="5.0" transform="rotate(174.0 141.6 145.2)" class="pt"/><ellipse cx="133.9" cy="140.7" rx="7.6" ry="5.0" transform="rotate(246.0 133.9 140.7)" class="pt"/><ellipse cx="135.7" cy="132.0" rx="7.6" ry="5.0" transform="rotate(318.0 135.7 132.0)" class="pt"/><ellipse cx="144.6" cy="131.1" rx="7.6" ry="5.0" transform="rotate(390.0 144.6 131.1)" class="pt"/><circle cx="140.8" cy="137.7" r="3.3" class="pc"/></g><g><ellipse cx="136.4" cy="142.7" rx="6.6" ry="4.4" transform="rotate(104.5 136.4 142.7)" class="pt"/><ellipse cx="130.5" cy="147.6" rx="6.6" ry="4.4" transform="rotate(176.5 130.5 147.6)" class="pt"/><ellipse cx="124.0" cy="143.5" rx="6.6" ry="4.4" transform="rotate(248.5 124.0 143.5)" class="pt"/><ellipse cx="125.9" cy="136.0" rx="6.6" ry="4.4" transform="rotate(320.5 125.9 136.0)" class="pt"/><ellipse cx="133.6" cy="135.5" rx="6.6" ry="4.4" transform="rotate(392.5 133.6 135.5)" class="pt"/><circle cx="130.1" cy="141.1" r="2.8" class="pc"/></g><g><ellipse cx="122.9" cy="159.3" rx="7.0" ry="4.7" transform="rotate(121.4 122.9 159.3)" class="pt"/><ellipse cx="115.3" cy="162.5" rx="7.0" ry="4.7" transform="rotate(193.4 115.3 162.5)" class="pt"/><ellipse cx="109.9" cy="156.2" rx="7.0" ry="4.7" transform="rotate(265.4 109.9 156.2)" class="pt"/><ellipse cx="114.2" cy="149.2" rx="7.0" ry="4.7" transform="rotate(337.4 114.2 149.2)" class="pt"/><ellipse cx="122.2" cy="151.1" rx="7.0" ry="4.7" transform="rotate(409.4 122.2 151.1)" class="pt"/><circle cx="116.9" cy="155.6" r="3.0" class="pc"/></g><g><ellipse cx="110.3" cy="163.8" rx="5.5" ry="3.7" transform="rotate(122.1 110.3 163.8)" class="pt"/><ellipse cx="104.3" cy="166.2" rx="5.5" ry="3.7" transform="rotate(194.1 104.3 166.2)" class="pt"/><ellipse cx="100.1" cy="161.3" rx="5.5" ry="3.7" transform="rotate(266.1 100.1 161.3)" class="pt"/><ellipse cx="103.6" cy="155.7" rx="5.5" ry="3.7" transform="rotate(338.1 103.6 155.7)" class="pt"/><ellipse cx="109.9" cy="157.3" rx="5.5" ry="3.7" transform="rotate(410.1 109.9 157.3)" class="pt"/><circle cx="105.6" cy="160.9" r="2.4" class="pc"/></g><g><ellipse cx="85.8" cy="170.5" rx="6.9" ry="4.6" transform="rotate(127.5 85.8 170.5)" class="pt"/><ellipse cx="78.1" cy="172.8" rx="6.9" ry="4.6" transform="rotate(199.5 78.1 172.8)" class="pt"/><ellipse cx="73.5" cy="166.1" rx="6.9" ry="4.6" transform="rotate(271.5 73.5 166.1)" class="pt"/><ellipse cx="78.4" cy="159.7" rx="6.9" ry="4.6" transform="rotate(343.5 78.4 159.7)" class="pt"/><ellipse cx="86.0" cy="162.4" rx="6.9" ry="4.6" transform="rotate(415.5 86.0 162.4)" class="pt"/><circle cx="80.4" cy="166.3" r="3.0" class="pc"/></g><g><ellipse cx="80.7" cy="179.5" rx="6.3" ry="4.2" transform="rotate(126.4 80.7 179.5)" class="pt"/><ellipse cx="73.7" cy="181.7" rx="6.3" ry="4.2" transform="rotate(198.4 73.7 181.7)" class="pt"/><ellipse cx="69.4" cy="175.7" rx="6.3" ry="4.2" transform="rotate(270.4 69.4 175.7)" class="pt"/><ellipse cx="73.7" cy="169.8" rx="6.3" ry="4.2" transform="rotate(342.4 73.7 169.8)" class="pt"/><ellipse cx="80.7" cy="172.1" rx="6.3" ry="4.2" transform="rotate(414.4 80.7 172.1)" class="pt"/><circle cx="75.6" cy="175.8" r="2.7" class="pc"/></g><g><ellipse cx="59.5" cy="189.8" rx="7.5" ry="5.0" transform="rotate(131.3 59.5 189.8)" class="pt"/><ellipse cx="50.8" cy="191.7" rx="7.5" ry="5.0" transform="rotate(203.3 50.8 191.7)" class="pt"/><ellipse cx="46.3" cy="184.1" rx="7.5" ry="5.0" transform="rotate(275.3 46.3 184.1)" class="pt"/><ellipse cx="52.2" cy="177.5" rx="7.5" ry="5.0" transform="rotate(347.3 52.2 177.5)" class="pt"/><ellipse cx="60.3" cy="181.0" rx="7.5" ry="5.0" transform="rotate(419.3 60.3 181.0)" class="pt"/><circle cx="53.8" cy="184.8" r="3.3" class="pc"/></g><g><ellipse cx="38.5" cy="221.8" rx="9.0" ry="6.0" transform="rotate(150.2 38.5 221.8)" class="pt"/><ellipse cx="28.0" cy="220.7" rx="9.0" ry="6.0" transform="rotate(222.2 28.0 220.7)" class="pt"/><ellipse cx="25.8" cy="210.3" rx="9.0" ry="6.0" transform="rotate(294.2 25.8 210.3)" class="pt"/><ellipse cx="35.0" cy="205.1" rx="9.0" ry="6.0" transform="rotate(366.2 35.0 205.1)" class="pt"/><ellipse cx="42.8" cy="212.2" rx="9.0" ry="6.0" transform="rotate(438.2 42.8 212.2)" class="pt"/><circle cx="34.0" cy="214.0" r="3.9" class="pc"/></g><g><ellipse cx="28.4" cy="224.7" rx="6.6" ry="4.4" transform="rotate(105.1 28.4 224.7)" class="pt"/><ellipse cx="22.3" cy="229.6" rx="6.6" ry="4.4" transform="rotate(177.1 22.3 229.6)" class="pt"/><ellipse cx="15.8" cy="225.4" rx="6.6" ry="4.4" transform="rotate(249.1 15.8 225.4)" class="pt"/><ellipse cx="17.9" cy="217.9" rx="6.6" ry="4.4" transform="rotate(321.1 17.9 217.9)" class="pt"/><ellipse cx="25.6" cy="217.5" rx="6.6" ry="4.4" transform="rotate(393.1 25.6 217.5)" class="pt"/><circle cx="22.0" cy="223.0" r="2.9" class="pc"/></g><g><ellipse cx="45.7" cy="230.3" rx="6.0" ry="4.0" transform="rotate(153.0 45.7 230.3)" class="pt"/><ellipse cx="38.8" cy="229.2" rx="6.0" ry="4.0" transform="rotate(225.0 38.8 229.2)" class="pt"/><ellipse cx="37.7" cy="222.3" rx="6.0" ry="4.0" transform="rotate(297.0 37.7 222.3)" class="pt"/><ellipse cx="43.9" cy="219.1" rx="6.0" ry="4.0" transform="rotate(369.0 43.9 219.1)" class="pt"/><ellipse cx="48.9" cy="224.1" rx="6.0" ry="4.0" transform="rotate(441.0 48.9 224.1)" class="pt"/><circle cx="43.0" cy="225.0" r="2.6" class="pc"/></g></svg>
+<div class="side-r">Kamado Nezuko&nbsp;&nbsp;·&nbsp;&nbsp;<span class="jp">鬼滅の刃</span>&nbsp;&nbsp;·&nbsp;&nbsp;Demon Slayer</div>
+
+<div class="shell">
+
+  <!-- ============ TOP NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a href="#hero" class="brand">
+      <span class="brand-mark jp">竹</span>
+      <span class="brand-txt">Phan Bảo Ngọc<small>Kế toán – Kiểm toán · ACCA</small></span>
+    </a>
+    <nav class="topmenu" id="topmenu">
+      <a href="#about">Giới thiệu</a>
+      <a href="#exp">Kinh nghiệm</a>
+      <a href="#awards">Giải thưởng</a>
+      <a href="#research">Nghiên cứu</a>
+      <a href="#act">Hoạt động</a>
+      <a href="#skills">Kỹ năng</a>
+    </nav>
+    <div class="nav-right">
+      <button class="mbtn" id="musicBtn" title="Bật/tắt nhạc nền" aria-label="Bật/tắt nhạc nền">
+        <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><line x1="17" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="17" y2="15"/></svg>
+        <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg>
+      </button>
+      <a href="#contact" class="nav-cta">Liên hệ</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ============ CONTENT ============ -->
+  <main class="content">
+
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="hero2">
+      <span class="sec-wm hero-wm" aria-hidden="true">滅</span>
+      <div class="wrap hero2-inner">
+        <div class="hero2-left reveal">
+          <div class="eyebrow">Xin chào, mình là</div>
+          <h1 class="hero-name">Phan Bảo Ngọc</h1>
+          <div class="hero-role">Sinh viên <b>Kế toán – Kiểm toán</b> định hướng ACCA · hướng tới <b>Core Assurance @ EY</b></div>
+          <p class="hero-desc">Mạnh về phân tích báo cáo tài chính và nghiên cứu học thuật, giàu kinh nghiệm lãnh đạo qua việc tổ chức các cuộc thi kế toán – kiểm toán quy mô toàn quốc.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn cta">Liên hệ ngay</a>
+            <a href="#exp" class="pill">Xem kinh nghiệm →</a>
+          </div>
+          <span class="avail"><span class="dot"></span>Sẵn sàng thực tập Core Assurance</span>
+        </div>
+        <div class="hero2-right reveal">
+          <div class="hero-photo">
+            <span class="blob" aria-hidden="true"></span>
+            <div class="ring"><div class="frame"><span class="ph">PBN</span></div></div>
+            <svg class="portrait-bow" viewBox="0 0 132 116" aria-hidden="true">
+              <path d="M60 56 L41 110 L52 100 L61 112 L69 60 Z" fill="#cf7ba0"/>
+              <path d="M74 56 L95 106 L82 99 L76 112 L65 60 Z" fill="#c46f96"/>
+              <path d="M66 48 L12 20 L28 50 L12 78 L66 60 Z" fill="#f0a2c5"/>
+              <path d="M66 48 L120 20 L104 50 L120 78 L66 60 Z" fill="#ef9ec2"/>
+              <path d="M65 52 L30 36 L39 52 L30 68 L65 58 Z" fill="#d585ab" opacity=".6"/>
+              <path d="M67 52 L102 36 L93 52 L102 68 L67 58 Z" fill="#d585ab" opacity=".6"/>
+              <path d="M64 49 L19 26 L26 34 L60 50 Z" fill="#ffcbe0" opacity=".85"/>
+              <path d="M68 49 L113 26 L106 34 L72 50 Z" fill="#ffcbe0" opacity=".5"/>
+              <path d="M57 40 Q66 35 75 40 L73 70 Q66 75 59 70 Z" fill="#bd6a92"/>
+              <path d="M61 43 Q62 55 61 67" stroke="#e6a0c0" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>
+              <path d="M70 43 Q71 55 70 67" stroke="#a85a80" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/>
+            </svg>
+            <span class="float-ic f1 jp">華</span>
+            <span class="float-ic f2 jp">竹</span>
+            <span class="float-ic f3 jp">血</span>
+            <span class="float-ic f4">❀</span>
+            <span class="float-ic f5">❋</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARTNERS ============ -->
+    <section class="partners">
+      <div class="wrap">
+        <div class="partners-label">Học tập · Thực tập · Hợp tác cùng</div>
+        <div class="partners-row">
+          <span>EY Việt Nam</span><span>ACCA</span><span>VCCA</span><span>VACPA</span><span>VietinBank</span><span>ĐH Ngoại thương</span><span>SAFC · HUST</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HIGHLIGHT: SỐ LIỆU + TRỌNG TÂM ============ -->
+    <section class="hl-block">
+      <div class="wrap hl-grid">
+        <div class="hl-num reveal">
+          <div class="big">3.65<span>/4</span></div>
+          <div class="big-l">GPA tích lũy</div>
+          <div class="big-sub">Kế toán – Kiểm toán · định hướng ACCA</div>
+          <ul class="mini-stats">
+            <li><b>7.5</b> IELTS · Tiếng Anh</li>
+            <li><b>7/9</b> môn F ACCA đã hoàn thành</li>
+            <li><b>~1000</b> thí sinh · Cúp KTV Tài năng 15</li>
+          </ul>
+        </div>
+        <div class="hl-cards reveal">
+          <h2 class="sec-title">Vững chuyên môn, giàu trải nghiệm tổ chức</h2>
+          <p class="body-t" style="margin:8px 0 4px">Sinh viên năm cuối Kế toán – Kiểm toán với đam mê phân tích, kiểm toán và nghiên cứu; hướng tới sự nghiệp Core Assurance tại EY Việt Nam.</p>
+          <div class="focus-row">
+            <div class="focus-card dark"><span class="fic">📊</span><h4>Phân tích tài chính</h4><p>Phân tích BCTC, thẩm định tín dụng, đánh giá năng lực tài chính doanh nghiệp.</p></div>
+            <div class="focus-card"><span class="fic">🛡️</span><h4>Kiểm soát &amp; Kiểm toán</h4><p>Tiếp cận quy trình kiểm soát nội bộ, hướng tới Core Assurance @ EY.</p></div>
+            <div class="focus-card"><span class="fic">🎓</span><h4>Nghiên cứu &amp; Lãnh đạo</h4><p>Nghiên cứu định lượng đạt giải; dẫn dắt CLB &amp; cuộc thi toàn quốc.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 · GIỚI THIỆU -->
+    <section id="about" data-wm="華"><span class="sec-wm" aria-hidden="true">華</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">01</span>
+          <h2 class="sec-title">Giới <em>thiệu</em></h2></div>
+        <div class="about-grid">
+          <div class="reveal">
+            <p class="body-t" style="font-size:1.06rem;color:var(--ink)">Định hướng theo đuổi chứng chỉ <b>ACCA</b> song song với chương trình Kế toán – Kiểm toán, mình chú trọng nền tảng phân tích, tư duy phản biện và trải nghiệm thực tế. Bên cạnh học thuật, mình dành nhiều tâm huyết cho công tác tổ chức — dẫn dắt câu lạc bộ chuyên môn và các cuộc thi kiểm toán toàn quốc — để rèn kỹ năng lãnh đạo, đàm phán và quản trị.</p>
+            <div class="chips" style="margin-top:22px">
+              <span class="chip key">Phân tích BCTC</span>
+              <span class="chip key">Kiểm soát nội bộ</span>
+              <span class="chip">Nghiên cứu định lượng</span>
+              <span class="chip">Lãnh đạo &amp; tổ chức</span>
+            </div>
+          </div>
+          <div class="edu-card reveal">
+            <div class="when">09/2023 – Dự kiến 2027</div>
+            <h4>Đại học Ngoại thương (FTU)</h4>
+            <div class="edu-row"><span class="k">Chuyên ngành</span><span class="v">Kế toán – Kiểm toán · ACCA</span></div>
+            <div class="edu-row"><span class="k">GPA tích lũy</span><span class="v">3.65 / 4.00</span></div>
+            <div class="edu-row"><span class="k">Học bổng</span><span class="v">Khuyến khích SV Giỏi (2024)</span></div>
+            <div class="edu-row" style="display:block;border-top:1px dashed var(--line)">
+              <span class="k">Tiến độ ACCA · 7/9 môn</span>
+              <div class="acca-mods">
+                <span class="mod done">BT/F1</span><span class="mod done">MA/F2</span><span class="mod done">FA/F3</span>
+                <span class="mod done">LW/F4</span><span class="mod done">PM/F5</span><span class="mod done">FR/F7</span>
+                <span class="mod done">AA/F8</span><span class="mod cur">FM/F9 · đang học</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · KINH NGHIỆM -->
+    <section id="exp" data-wm="務"><span class="sec-wm" aria-hidden="true">務</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">02</span>
+          <h2 class="sec-title">Kinh <em>nghiệm</em></h2></div>
+        <div class="feature reveal">
+          <div class="feat-meta"><span class="feat-when">02/2026 – 04/2026 · Hà Nội</span></div>
+          <h3>Ngân hàng TMCP Công Thương Việt Nam — VietinBank</h3>
+          <div class="role-line">Thực tập sinh Quan hệ Khách hàng</div>
+          <ul>
+            <li>Phân tích báo cáo tài chính của khách hàng doanh nghiệp để đánh giá hiệu quả hoạt động kinh doanh.</li>
+            <li>Rà soát hồ sơ thẩm định tín dụng, tiếp cận và làm quen với quy trình kiểm soát nội bộ của ngân hàng.</li>
+            <li>Hỗ trợ đánh giá năng lực tài chính và hoạt động kinh doanh của khách hàng, kiểm tra chứng từ phục vụ công tác thẩm định tín dụng.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · GIẢI THƯỞNG -->
+    <section id="awards" data-wm="賞"><span class="sec-wm" aria-hidden="true">賞</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">03</span>
+          <h2 class="sec-title">Giải <em>thưởng</em></h2></div>
+        <div class="feature reveal">
+          <div class="feat-meta"><span class="feat-when">05/2026 · SAFC – Trường Kinh tế, ĐH Bách khoa Hà Nội</span><span class="feat-tag">Top 3</span></div>
+          <h3>Managerial Accounting Mastermind</h3>
+          <div class="role-line">Á quân 2 (2nd Runner-up) · Top 3 chung cuộc</div>
+          <ul>
+            <li>Tranh tài cùng các đội đến từ nhiều trường đại học, giải quyết những tình huống kế toán quản trị và ra quyết định kinh doanh dưới áp lực thời gian.</li>
+            <li>Vận dụng phân tích chi phí – sản lượng – lợi nhuận (CVP), lập ngân sách, phân tích chênh lệch và đo lường hiệu quả hoạt động để đưa ra các khuyến nghị thực tiễn.</li>
+            <li>Rèn luyện tư duy phân tích, kỹ năng làm việc nhóm và thuyết trình qua nhiều vòng thi.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · NGHIÊN CỨU -->
+    <section id="research" data-wm="究"><span class="sec-wm" aria-hidden="true">究</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">04</span>
+          <h2 class="sec-title">Nghiên <em>cứu</em></h2></div>
+        <div class="feature reveal">
+          <div class="feat-meta"><span class="feat-when">2025 · Đại học Ngoại thương</span><span class="feat-tag">Giải Nhất cấp Khoa</span></div>
+          <h3>Tác động của truyền thông mạng xã hội đến ý định &amp; hành vi tiêu dùng xanh của Gen Z tại Hà Nội</h3>
+          <ul>
+            <li>Thực hiện đề tài nghiên cứu thực nghiệm về ảnh hưởng của mạng xã hội tới ý định và hành vi tiêu dùng xanh của Gen Z tại Hà Nội.</li>
+            <li>Thiết kế phương pháp nghiên cứu, thu thập &amp; phân tích dữ liệu khảo sát bằng kỹ thuật định lượng, chuyển kết quả thành khuyến nghị thực tiễn.</li>
+            <li>Đạt <b>Giải Nhất</b> cấp Khoa Kế toán – Kiểm toán (06/2025) và <b>Giải Ba</b> cấp Trường (05/2025).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · HOẠT ĐỘNG -->
+    <section id="act" data-wm="団"><span class="sec-wm" aria-hidden="true">団</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">05</span>
+          <h2 class="sec-title">Hoạt <em>động</em></h2></div>
+
+        <div class="act reveal">
+          <figure class="act-fig"><img src="CLUB.jpg" alt="Cúp Kiểm toán viên Tài năng 2025"></figure>
+          <div class="feat-meta"><span class="feat-when">11/2023 – 12/2025</span></div>
+          <h3>CLB Kế toán – Kiểm toán Tương lai (FTU)</h3>
+          <div class="role-line">Chủ tịch</div>
+          <ul>
+            <li>Đàm phán trực tiếp với EY Việt Nam, ACCA, VCCA và VACPA để huy động tài trợ tài chính &amp; kỹ thuật cho hai cuộc thi kiểm toán và thuế quy mô toàn quốc.</li>
+            <li>Dẫn dắt tổ chức “Cúp Kiểm toán viên Tài năng” lần thứ 15 — cuộc thi kiểm toán toàn quốc thu hút khoảng 1.000 thí sinh; toàn bộ Top 6 chung cuộc nhận offer thực tập từ EY Hà Nội &amp; EY TP.HCM.</li>
+            <li>Quản lý &amp; giám sát hoạt động tài chính của CLB: lập ngân sách, theo dõi chi phí, kiểm soát dòng tiền.</li>
+          </ul>
+        </div>
+
+        <div class="act reveal">
+          <figure class="act-fig"><img src="YOUTH UNION.jpg" alt="Hội nghị kiện toàn Ban Chấp hành Đoàn trường"></figure>
+          <div class="feat-meta"><span class="feat-when">10/2025 – Hiện tại</span></div>
+          <h3>Đoàn Thanh niên Đại học Ngoại thương</h3>
+          <div class="role-line">Ủy viên Ban Chấp hành</div>
+          <ul>
+            <li>Một trong 8 đại diện sinh viên trong Ban Chấp hành Đoàn trường, góp phần vào công tác quản trị sinh viên và các sáng kiến toàn trường.</li>
+            <li>Là đầu mối kết nối giữa Ban Chấp hành và các CLB sinh viên: điều phối thông tin, hỗ trợ triển khai các hoạt động của tổ chức.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · KỸ NĂNG -->
+    <section id="skills" data-wm="技"><span class="sec-wm" aria-hidden="true">技</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">06</span>
+          <h2 class="sec-title">Kỹ <em>năng</em></h2></div>
+        <div class="skill-grid">
+          <div class="skill-box reveal"><h4><span class="jp">専</span>Chuyên môn nổi bật</h4>
+            <div class="chips"><span class="chip key">Phân tích báo cáo tài chính</span><span class="chip key">Thẩm định tín dụng</span><span class="chip">Kiểm soát nội bộ</span><span class="chip">Đánh giá năng lực tài chính</span></div></div>
+          <div class="skill-box reveal"><h4><span class="jp">心</span>Kỹ năng mềm</h4>
+            <div class="chips"><span class="chip key">Tư duy phân tích</span><span class="chip">Giải quyết vấn đề</span><span class="chip">Giao tiếp</span><span class="chip">Làm việc nhóm</span><span class="chip">Quản lý thời gian</span></div></div>
+          <div class="skill-box reveal"><h4><span class="jp">計</span>Tin học văn phòng</h4>
+            <div class="chips"><span class="chip key">Excel</span><span class="chip">PowerPoint</span><span class="chip">Word</span></div></div>
+          <div class="skill-box reveal"><h4><span class="jp">言</span>Ngoại ngữ</h4>
+            <div class="chips"><span class="chip key">Tiếng Việt · Bản ngữ</span><span class="chip key">Tiếng Anh · IELTS 7.5</span><span class="chip">Tiếng Trung · HSK 3</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · LIÊN HỆ -->
+    <section id="contact" data-wm="縁"><span class="sec-wm" aria-hidden="true">縁</span>
+      <div class="wrap">
+        <div class="sec-head-row reveal"><span class="sec-num">07</span>
+          <h2 class="sec-title">Liên <em>hệ</em></h2></div>
+        <p class="lead reveal" style="max-width:24ch;margin-bottom:28px">Rất mong được <span class="hl">đồng hành</span> cùng đội ngũ Core Assurance.</p>
+        <div class="contact-cta reveal">
+          <a class="btn cta" href="mailto:ngocpb1910.work@gmail.com">✉ &nbsp;ngocpb1910.work@gmail.com</a>
+          <a class="pill" href="https://www.linkedin.com/in/b%E1%BA%A3o-ng%E1%BB%8Dc-phan-63678838b/" target="_blank" rel="noopener noreferrer">in&nbsp; LinkedIn</a>
+          <a class="pill" href="tel:+84933868074">☎ &nbsp;(+84) 933 868 074</a>
+          <span class="pill soft">⌖ &nbsp;Hà Nội, Việt Nam</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot wrap">
+      <span>Thiết kế lấy cảm hứng từ <em>Kimetsu no Yaiba · Nezuko</em></span>
+      <span class="jp">華 開</span>
+      <span>Phan Bảo Ngọc · Kế toán – Kiểm toán</span>
+    </footer>
+  </main>
+</div>
+
+<audio id="bgm" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.m4a" type="audio/mp4">
+  <source src="music.ogg" type="audio/ogg">
+</audio>
+
+<script>
+/* ---------- scroll reveal (robust, scroll-based) ---------- */
+const revs=[...document.querySelectorAll('.reveal')];
+let rTick=false;
+function checkReveal(){rTick=false;const h=innerHeight;for(const el of revs){if(!el.classList.contains('in')&&el.getBoundingClientRect().top<h*0.9)el.classList.add('in');}}
+function onScrollR(){if(!rTick){rTick=true;requestAnimationFrame(checkReveal);}}
+addEventListener('scroll',onScrollR,{passive:true});addEventListener('resize',onScrollR);addEventListener('load',checkReveal);checkReveal();
+
+/* ---------- top nav: scrolled state + burger ---------- */
+const topnav=document.getElementById('topnav');
+addEventListener('scroll',()=>topnav.classList.toggle('scrolled',scrollY>20),{passive:true});
+const burger=document.getElementById('burger'),topmenu=document.getElementById('topmenu');
+burger.onclick=()=>{burger.classList.toggle('open');topmenu.classList.toggle('open');};
+topmenu.querySelectorAll('a').forEach(a=>a.onclick=()=>{burger.classList.remove('open');topmenu.classList.remove('open');});
+
+/* ---------- scroll-spy nav ---------- */
+const navLinks=[...document.querySelectorAll('#topmenu a')];
+const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){
+    const id='#'+e.target.id;
+    navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));
+  }});
+},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+secs.forEach(s=>spy.observe(s));
+
+/* ---------- falling sakura petals (subtle) ---------- */
+(function(){
+  const cv=document.getElementById('petals'),cx=cv.getContext('2d');let W,H,ps=[];
+  const COLS=['rgba(255,182,214,','rgba(255,194,221,','rgba(240,162,197,','rgba(255,214,230,'];
+  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+  addEventListener('resize',rs);rs();
+  const N=Math.min(26,Math.round(innerWidth/56));
+  function seed(y){return{x:Math.random()*W,y:y==null?Math.random()*H:y,s:5+Math.random()*7,sp:.35+Math.random()*.7,
+    dr:(Math.random()-.5)*.7,a:Math.random()*Math.PI*2,va:(Math.random()-.5)*.03,c:COLS[(Math.random()*COLS.length)|0],o:.32+Math.random()*.4};}
+  for(let i=0;i<N;i++)ps.push(seed());
+  function petal(s){cx.beginPath();cx.moveTo(0,-s);cx.bezierCurveTo(s*.85,-s*.5,s*.85,s*.5,0,s);cx.bezierCurveTo(-s*.85,s*.5,-s*.85,-s*.5,0,-s);cx.closePath();}
+  function tick(){cx.clearRect(0,0,W,H);
+    ps.forEach(p=>{p.y+=p.sp;p.x+=p.dr+Math.sin(p.y/60)*.3;p.a+=p.va;
+      if(p.y>H+14){Object.assign(p,seed(-12));}
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c+p.o+')';petal(p.s);cx.fill();cx.restore();});
+    requestAnimationFrame(tick);}
+  tick();
+})();
+
+/* ---------- nhạc nền: đặt file "music.mp3" cùng thư mục · tự phát khi tương tác lần đầu · LẶP ---------- */
+(function(){
+  const bgm=document.getElementById('bgm'),b=document.getElementById('musicBtn');
+  if(!bgm||!b)return;
+  bgm.loop=true; bgm.volume=0.6;
+  let userPaused=false;
+  function ui(on){b.classList.toggle('playing',on);}
+  function tryPlay(){ bgm.play().then(()=>ui(true)).catch(()=>ui(false)); }
+  b.onclick=function(){ if(bgm.paused){ userPaused=false; tryPlay(); } else { userPaused=true; bgm.pause(); ui(false); } };
+  function kick(){ if(!userPaused && bgm.paused) tryPlay(); window.removeEventListener('pointerdown',kick); window.removeEventListener('keydown',kick); }
+  window.addEventListener('pointerdown',kick); window.addEventListener('keydown',kick);
+  bgm.addEventListener('ended',function(){ bgm.currentTime=0; if(!userPaused) tryPlay(); });
+})();
+</script>
+<canvas id="trail" aria-hidden="true"></canvas>
+<div id="curFlame" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g class="flameFx"><g class="fa fa1"><path d="M12 15.5 C8 14.7 5.7 11.5 7 7.8 C7.5 9.6 8.6 10.3 9.9 9.9 C8.1 6.8 9.7 3.6 10.6 1.4 C11.7 4.2 13.9 5.6 15 7.9 C15.4 6.6 16.3 6.8 16.7 7.7 C18 11.2 16 14.8 12 15.5 Z" fill="#e173a1"/></g><g class="fa fa2"><path d="M12 14 C9 13.4 7.2 10.8 8.1 8.2 C8.5 9.5 9.3 10 10.2 9.7 C9 7.3 10.3 4.6 11 3 C11.8 5 13.4 6.1 14.2 7.8 C14.5 6.9 15.1 7 15.4 7.6 C16.3 10.2 14.8 13.4 12 14 Z" fill="#ffa6cc"/></g><g class="fa fa3"><path d="M11.9 12.6 C9.9 12.1 8.8 10.3 9.4 8.5 C9.7 9.3 10.2 9.6 10.8 9.4 C10 7.8 10.9 5.9 11.4 4.7 C12 6.1 13 6.8 13.5 8 C13.7 7.4 14.1 7.5 14.3 7.9 C15 9.6 13.9 12 11.9 12.6 Z" fill="#ffe3ef"/></g></g></svg></div>
+<script>(function(){var cf=document.getElementById('curFlame');if(!cf)return;var shown=false;window.addEventListener('mousemove',function(e){cf.style.transform='translate('+(e.clientX-12)+'px,'+(e.clientY-13)+'px)';if(!shown){shown=true;cf.classList.add('on');}},{passive:true});document.addEventListener('mouseleave',function(){cf.classList.remove('on');});document.addEventListener('mouseenter',function(){if(shown)cf.classList.add('on');});})();</script>
+<script>
+/* ===== Vệt lửa hồng theo chuột (Huyết Quỷ Thuật) — như bản trước ===== */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  const tc=document.getElementById('trail'); if(!tc)return; const tx=tc.getContext('2d'); let tw,th;
+  function trs(){tw=tc.width=innerWidth;th=tc.height=innerHeight;} addEventListener('resize',trs); trs();
+  const pts=[]; let drops=[]; let lx=0,ly=0,started=false;
+  addEventListener('mousemove',function(e){
+    if(!started){lx=e.clientX;ly=e.clientY;started=true;}
+    pts.push({x:e.clientX,y:e.clientY}); if(pts.length>28)pts.shift();
+    const dx=e.clientX-lx,dy=e.clientY-ly,d=Math.hypot(dx,dy); lx=e.clientX; ly=e.clientY;
+    if(d>2){ const n=Math.min(5,2+Math.floor(d/7)); for(let i=0;i<n;i++){ const spark=Math.random()<.42;
+      drops.push({x:e.clientX+(Math.random()*8-4),y:e.clientY+(Math.random()*6-3),vx:(Math.random()*2-1)*(spark?1.8:1),vy:-(0.8+Math.random()*2)*(spark?1.3:1),r:spark?1+Math.random()*1.6:3+Math.random()*3.4,life:1,decay:spark?.03+Math.random()*.02:.02+Math.random()*.014,spark:spark}); } }
+  },{passive:true});
+  function stroke(w,a){ tx.beginPath();tx.moveTo(pts[0].x,pts[0].y);
+    for(let i=1;i<pts.length-1;i++){const mx=(pts[i].x+pts[i+1].x)/2,my=(pts[i].y+pts[i+1].y)/2;tx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);}
+    tx.lineWidth=w;tx.globalAlpha=a;tx.stroke(); }
+  function ribbon(){ if(pts.length<3)return;
+    tx.globalCompositeOperation='lighter';tx.lineJoin='round';tx.lineCap='round';
+    const g=tx.createLinearGradient(pts[0].x,pts[0].y,pts[pts.length-1].x,pts[pts.length-1].y);
+    g.addColorStop(0,'rgba(190,55,115,0)');g.addColorStop(.5,'rgba(255,120,175,.6)');g.addColorStop(1,'rgba(255,155,205,.95)');
+    tx.strokeStyle=g;stroke(18,.45);stroke(11,.7);
+    const core=tx.createLinearGradient(pts[0].x,pts[0].y,pts[pts.length-1].x,pts[pts.length-1].y);
+    core.addColorStop(0,'rgba(255,155,205,0)');core.addColorStop(.6,'rgba(255,205,230,.85)');core.addColorStop(1,'rgba(255,240,248,1)');
+    tx.strokeStyle=core;stroke(4,1); tx.globalAlpha=1; }
+  (function loop(){tx.clearRect(0,0,tw,th); ribbon();
+    tx.globalCompositeOperation='lighter';
+    for(let i=drops.length-1;i>=0;i--){const p=drops[i];p.x+=p.vx;p.y+=p.vy;p.vy-=.055;p.r*=.978;p.x+=Math.sin(p.life*13)*.7;
+      p.life-=p.decay;if(p.life<=0){drops.splice(i,1);continue;}const a=p.life;
+      if(p.spark){const rr=p.r*2.2,gg=tx.createRadialGradient(p.x,p.y,0,p.x,p.y,rr);
+        gg.addColorStop(0,'rgba(255,235,246,'+a+')');gg.addColorStop(.5,'rgba(255,140,195,'+(a*.7)+')');gg.addColorStop(1,'rgba(190,55,115,0)');
+        tx.fillStyle=gg;tx.beginPath();tx.arc(p.x,p.y,rr,0,7);tx.fill();
+      }else{const h=p.r*3.6,w=p.r*1.5; tx.save();tx.translate(p.x,p.y);const fl=Math.sin(p.life*22)*.16;tx.transform(1+fl,0,0,1,0,0);
+        const g2=tx.createLinearGradient(0,h*.4,0,-h);
+        g2.addColorStop(0,'rgba(180,50,110,0)');g2.addColorStop(.35,'rgba(255,105,170,'+(a*.75)+')');g2.addColorStop(.72,'rgba(255,165,210,'+(a*.92)+')');g2.addColorStop(1,'rgba(255,238,247,'+a+')');
+        tx.beginPath();tx.moveTo(0,-h);tx.quadraticCurveTo(w,-h*.12,0,h*.4);tx.quadraticCurveTo(-w,-h*.12,0,-h);tx.closePath();
+        tx.fillStyle=g2;tx.fill();tx.restore();
+      }}
+    tx.globalCompositeOperation='source-over';
+    if(pts.length&&Math.random()<.45)pts.shift();
+    requestAnimationFrame(loop);})();
+})();
+</script>
+</body>
+</html>
