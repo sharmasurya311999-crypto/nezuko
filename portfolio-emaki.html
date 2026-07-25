@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phan Bảo Ngọc · Kế toán – Kiểm toán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Shippori+Mincho:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==================== NEZUKO · EMAKI (cuộn tranh dọc) ==================== */
+:root{
+  --paper:#f6edd8; --paper-hi:#fbf5e8; --paper-2:#efe3c6; --paper-3:#f3e9cf;
+  --ink:#2c2013; --ink-2:#4a3826; --ink-3:#6b543a;
+  --hanko:#b73225; --hanko-2:#9a2a20; --wood:#3f2c19; --wood-2:#6b4a2b;
+  --pink:#d98ba5; --pink-br:#e79bb8; --gold:#cbb389; --gold-2:#b89b68;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --jp:'Shippori Mincho','Playfair Display',serif;
+  --sans:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  --radius:14px;
+  /* ============ ẢNH — ĐẶT CÁC FILE NÀY CÙNG THƯ MỤC VỚI HTML ============
+     • avatar.jpg      → ảnh chân dung (khung tròn)
+     • background.jpg  → ảnh nền (bức tường sau cuộn tranh)
+     • CLUB.jpg        → ảnh hoạt động CLB
+     • YOUTH UNION.jpg → ảnh hoạt động Đoàn trường
+     • music.mp3       → nhạc nền
+     • background1.jpg, background2.jpg, background3.jpg → 3 ảnh nền CHÍNH, TỰ ĐỔI luân phiên
+       (chuyển cảnh mượt mà) — sửa danh sách & tốc độ ở phần <script> "BACKGROUND slideshow".
+     • background.jpg → ảnh nền dự phòng (hiện nếu thiếu ảnh ở trên).
+     • (tuỳ chọn) ghim 1 ảnh CỐ ĐỊNH ở gutter trái / giữa / phải: đổi --side-img-l /
+       --center-img / --side-img-r thành url('...') (mặc định tắt để thấy ảnh nền tự đổi).
+     Nền tối hơn: tăng --bg-dim (0 = sáng, 1 = tối). Nền mờ hơn: tăng --bg-blur. */
+  --avatar-img:url('avatar.jpg');
+  --bg-img:url('background.jpg');
+  --side-img-l:none;   /* ghim ảnh cố định bên trái (tuỳ chọn) */
+  --center-img:none;   /* ghim ảnh cố định ở giữa  (tuỳ chọn) */
+  --side-img-r:none;   /* ghim ảnh cố định bên phải (tuỳ chọn) */
+  --center-dim:0;
+  --bg-dim:.62; --bg-blur:2px;
+  --cur:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAFdElEQVR4nO3YW2wUVRgH8P83sxe2HaywtruAQsDUS4pGQ1AwJm7UBx+QFJOFEKMxmBJjSh8wxgdItrVEjQKJQAwIIQKBmK0hAZPiGxKID9hYJYrh0ljoDWhpt+2y07mc+fvQ2aSBtkDptjHxSza7OXtmzm/PnO87Mwv814OgAED7xgNPMJnWp3p87W4dBEKmTgaE2tGr88znASA9hdBxgUwPQ650tbwyNz6vYuaskq8AIJkECMi0A/FXqQCAhPW38NAMb9aCxxLt1Qe+kNWrFVIn9alCjhnk8Prr2Hj4LA/9Rv7RZbk7T7P1w31vAwBTvOsSedAYc4B8cvyS3BYJhYJlmF0ExIt1fcl8Lxot/fbv5LZnpE44bUAAEBG+1PCRJSIuZhUDrieYa4jx8lNFi15femLosxPnrtZ8twUo3GzecVKmUhoAtFUfWHpjU0MVr7BEi4TOwQUgQhCCZ+MMVcyfFy4yFovIOqZOzpA68QqxJu8A/uy3ecInZwRD3+Dk2aMlK5cswuww4KphgKLAcTzTznmAPNyV7YgBAFKpSQcGxv5KTF0hAIcJzQYwNwLcsjXoGuB5wM1b4rlKSM+zldgAUDvZutGACcADgEg43JwZHHClP8JIyw0dRZqGkgigCLT0AH2mR9MR0bSLC0ouXycpIuJNNvCOSyx1dV46mdZjW9e2EPw+MGAHre5+B793EsUhwAiDbX3IdN6QoCea6PK11NV5aGgoSJKMeomT6aSXqk1phqXX9Gb7y2d53ouD5hAMeRoSLYLz2uMe9nXxek/3vvm73z9E47Imq1erQgDHXNQERSC8nkobMuh+Dl3em/3JCkOPGh4AcXqz/a7lPFc0d/YVkgERcQsBHDfyOwkA3Pj0h3KSHVfb2ryGdNolSdd1/7Esq8LvO07CFRKZosZkWocAJC+0t7fTMAy1Z/du5SOv2bb9wrQh87N4sbExTPJSV1cXY7GYCgaD3Lp1a34mM6ZpvjotyDywqakpSPJSZ2cn4/G4Ki0tZSAQ4ObNm12SVEqZjuNUTjlyNGAsFlPRaJTxeJy6rrOmpkZxODzLst6dTOSEaxdJKKVQWlqKXbt2aevWraNSiqFQ6IBt29Ui4pIMjEy0KQXmw3VdlJWV4eDBg7JmzRrJ5XJeMBjcOTQ0tMkvPdqDICel+ueRx44dk1WrVkkmk1HhcHiL4zhfiogCIBNFTtr25DgOYrEYTp8+LZWVlXpPT48bCAQ+Vkrtye/RE0E+MFDXdej68ENeb28vNE3DqVOnsGzZskBzc7Oradp6pdQRALqI8H6RE840EYGu6+jv74eIoLi4GIlEAmVlZRARlclkeOTIEZSXlw8ZhrEWgEHyHQCDJCFyb48LEwLmcTdv3sTKlSuRy+XQ0tKCxsbGfJeRz835Md4EsEJEDvsl6J727vsGighEBN3d3aiuruaOHTs4MDCgVVRU4MyZM1y+fDlt296vadoFTdNUMBi0ADgATAA/+aeZvDuf2wt1R0cHI5GIqq+vzxdnkmRVVRUrKysdknQcZ/ukAe4X2NbWxr1799r+HtxlmuZ6kub58+cZjUa91tZWj+RQX1/fQr9Qh/z3By7a4wJJBkleIJm/QWixLGsxACilGkl6iUTC3bBhg0OSlmXV+8cVdl++Ddjm434l+ajfrmez2TdI8vjx42rOnDkql8t5JDu7u7tnjjxHQZH+6xDJH3t7e0v89oDfHiD5p1KKCxcuVLW1tS5JZrPZqny/ggLHQGsjBzdNcwNJ7t+/39q+fbvlz/QFklr+B04FSm4fzP8sJKMk+0ck9jWSm/LAguPGixGzucl13Sbbtj8g+ci0om6P0WaJ5JT/ZTxujMj4wtS8/2MC8S/1uZQs8vxVrQAAAABJRU5ErkJggg==");
+  --asa:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'%3E%3Cg stroke='%23e79bb8' stroke-width='1' fill='none'%3E%3Cpath d='M15 0 L15 26 L0 52 M15 26 L30 52 M15 26 L37.5 39 M15 26 L-7.5 39'/%3E%3Cpath d='M45 0 L45 26 L30 52 M45 26 L60 52 M45 26 L67.5 39 M45 26 L22.5 39'/%3E%3Cpath d='M0 0 L30 0 L60 0 M0 52 L30 52 L60 52'/%3E%3Cpath d='M30 0 L30 26 M0 0 L0 26 M60 0 L60 26 M0 26 L30 26 L60 26'/%3E%3Cpath d='M30 26 L30 52 M15 26 L45 26'/%3E%3Cpath d='M0 26 L15 0 M30 26 L45 0 M30 26 L15 0 M60 26 L45 0'/%3E%3Cpath d='M0 26 L15 52 M30 26 L45 52 M30 26 L15 52 M60 26 L45 52'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:#1a120b;-webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+
+/* the wall behind the scroll */
+.wall{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--bg-img) center/cover no-repeat;filter:saturate(.9) blur(var(--bg-blur))}
+.wall .slide{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:0;transition:opacity 1.7s ease}
+.wall .slide.on{opacity:1}
+.wall-veil{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(80% 60% at 50% -10%,rgba(90,60,30,.5),transparent 60%),
+    radial-gradient(60% 50% at 12% 88%,rgba(150,60,45,.15),transparent 60%),
+    linear-gradient(180deg,rgba(24,15,8,var(--bg-dim)),rgba(18,11,6,calc(var(--bg-dim) + .05)))}
+#petals{position:fixed;inset:0;z-index:1;pointer-events:none}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(183,50,37,.24);color:#2c2013}
+/* kanji dùng font Nhật; chữ Việt (tên, tiêu đề) dùng Playfair có dấu đầy đủ */
+.jp,.topbar .brand .mk,.vtitle,.vsub,.hanko-seal,.fcard .fk,.chapter .med .k,.wall-kanji{font-family:var(--jp)!important}
+
+/* ===== ẢNH NỀN HAI BÊN (gutter trái/phải) ===== */
+.side-img{position:fixed;top:60px;bottom:0;width:calc((100vw - 840px)/2);z-index:1;pointer-events:none;
+  background-position:center;background-size:cover;background-repeat:no-repeat}
+.side-img.l{left:0;background-image:var(--side-img-l)}
+.side-img.r{right:0;background-image:var(--side-img-r)}
+.side-img::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(19,11,5,.28),rgba(19,11,5,.46))}
+@media(max-width:1100px){.side-img{display:none}}
+
+/* ===== ẢNH NỀN Ở GIỮA (sau cuộn giấy — lộ ra khi cuộn lên) ===== */
+.center-img{position:fixed;top:60px;bottom:0;left:50%;transform:translateX(-50%);width:min(840px,100vw);
+  z-index:0;pointer-events:none;background:var(--center-img) center/cover no-repeat}
+.center-img::after{content:"";position:absolute;inset:0;background:rgba(19,11,5,var(--center-dim))}
+
+/* ===== TRANG TRÍ HAI BÊN (lấp khoảng trống, thay chữ Latin dọc cũ) ===== */
+.wall-kanji{position:fixed;z-index:2;top:112px;writing-mode:vertical-rl;font-weight:700;
+  font-size:clamp(2rem,3.2vw,2.9rem);letter-spacing:16px;color:rgba(231,155,184,.18);
+  text-shadow:0 2px 22px rgba(0,0,0,.4);pointer-events:none;user-select:none}
+.wall-kanji.l{left:2.2vw}.wall-kanji.r{right:2.2vw}
+.wall-branch{position:fixed;z-index:2;pointer-events:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));opacity:.92}
+.wall-branch.tl{top:56px;left:-16px;width:min(280px,20vw);transform-origin:6% 6%;animation:branchWind 6.5s ease-in-out infinite}
+.wall-branch.br{bottom:-18px;right:-16px;width:min(240px,17vw);transform:rotate(180deg);transform-origin:6% 6%;animation:branchWind 7.4s ease-in-out infinite}
+.wall-branch .br{fill:none;stroke:#7a5334;stroke-width:4.5;stroke-linecap:round}
+.wall-branch .brs{fill:none;stroke:#8a6340;stroke-width:2.6;stroke-linecap:round}
+.wall-branch .pt{fill:var(--pink-br);transform-box:fill-box;transform-origin:center;animation:petalBreathe 3.6s ease-in-out infinite}
+.wall-branch .pc{fill:#ff8fbe}.wall-branch .bd{fill:#ffc7de}
+@media(max-width:1200px){.wall-kanji,.wall-branch{display:none}}
+
+/* ==================== TOP BAR (thanh gỗ) ==================== */
+.topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:16px;
+  padding:0 clamp(16px,4vw,34px);height:60px;
+  background:linear-gradient(#5a3e24,#3f2c19 60%,#2f2012);
+  box-shadow:0 6px 22px rgba(20,12,4,.5);border-bottom:2px solid #23160b}
+.topbar .brand{display:flex;align-items:center;gap:11px;color:#f6edd8}
+.topbar .brand .mk{font-family:var(--serif);font-weight:800;font-size:1.3rem;color:#ffcf88;
+  width:38px;height:38px;display:grid;place-items:center;border:1.5px solid rgba(255,207,136,.5);border-radius:9px;background:rgba(0,0,0,.16)}
+.topbar .brand .tx{display:flex;flex-direction:column;line-height:1.15}
+.topbar .brand .tx b{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:.3px}
+.topbar .brand .tx small{font-size:.64rem;color:#cbb389;letter-spacing:.4px}
+.topmenu{display:flex;gap:4px;margin-left:8px}
+.topmenu a{font-size:.82rem;font-weight:500;color:#e6d5b8;padding:8px 12px;border-radius:8px;transition:.2s;position:relative}
+.topmenu a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.topmenu a.active{color:#ffcf88}
+.topmenu a.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:#ffcf88;border-radius:2px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.mbtn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,207,136,.4);background:rgba(0,0,0,.16);color:#e6d5b8;cursor:pointer;display:grid;place-items:center;transition:.2s;flex:none}
+.mbtn:hover{color:#ffcf88;border-color:#ffcf88}
+.mbtn svg{width:18px;height:18px}
+.mbtn .on{display:none}.mbtn.playing .on{display:block}.mbtn.playing .off{display:none}
+.mbtn.playing{color:#ffcf88;border-color:#ffcf88}
+.nav-cta{font-size:.82rem;font-weight:600;color:#2c1a0d;background:linear-gradient(#ffcf88,#e0a94e);padding:9px 16px;border-radius:999px;transition:.2s}
+.nav-cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:22px;height:2px;background:#e6d5b8;border-radius:2px;transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ==================== THE SCROLL ==================== */
+.scroll{position:relative;z-index:3;max-width:820px;margin:0 auto;padding:0 clamp(10px,3vw,26px) 60px}
+.cord{width:2px;height:34px;margin:0 auto;background:linear-gradient(#caa96a,#8a6a3a)}
+.cord::after{content:"";display:block;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffe0a3,#b98a3f);margin:-3px auto 0;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.rod{height:32px;border-radius:7px;position:relative;z-index:5;
+  background:linear-gradient(#6b4a2b,#3f2c19 55%,#2a1c0f);box-shadow:0 10px 24px rgba(20,12,4,.45)}
+.rod::before,.rod::after{content:"";position:absolute;top:-5px;bottom:-5px;width:22px;border-radius:5px;
+  background:radial-gradient(circle at 45% 40%,#9a713f,#4a3018)}
+.rod::before{left:-12px}.rod::after{right:-12px}
+.rod.top{margin:0 8px}
+.rod.bottom{margin:0 8px}
+.tassel{width:3px;height:38px;background:linear-gradient(var(--hanko),#7d2018);margin:0 auto;position:relative}
+.tassel::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:14px;height:9px;border-radius:0 0 8px 8px;background:var(--hanko)}
+.tassel::after{content:"";position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:12px;height:16px;border-radius:0 0 6px 6px;
+  background:repeating-linear-gradient(90deg,var(--hanko) 0 2px,#8f221a 2px 3px)}
+
+.paper{position:relative;background:linear-gradient(180deg,var(--paper-hi),var(--paper) 30%,var(--paper-3));
+  border-left:1px solid #d9c39c;border-right:1px solid #d9c39c;
+  box-shadow:0 30px 70px rgba(20,12,4,.5);overflow:hidden;
+  padding:0 clamp(22px,5vw,64px)}
+.paper::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45;
+  background-image:repeating-linear-gradient(0deg,rgba(120,90,50,.045) 0 1px,transparent 1px 3px),
+                   repeating-linear-gradient(90deg,rgba(120,90,50,.035) 0 1px,transparent 1px 4px)}
+.paper>*{position:relative;z-index:1}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ==================== MASTHEAD ==================== */
+.masthead{text-align:center;padding:44px 0 20px}
+.vtitle,.vsub{position:absolute;top:44px;writing-mode:vertical-rl;font-family:var(--serif);z-index:2}
+.vtitle{right:clamp(6px,2vw,18px);font-weight:800;font-size:1.5rem;letter-spacing:8px;color:var(--hanko)}
+.vsub{left:clamp(6px,2vw,18px);font-size:.82rem;letter-spacing:5px;color:var(--gold-2)}
+/* subtle ink sakura branch top-left of paper */
+.mast-branch{position:absolute;top:-6px;left:-8px;width:min(230px,40vw);z-index:2;opacity:.9;
+  transform-origin:6% 6%;animation:branchWind 6s ease-in-out infinite}
+.mast-branch .br{fill:none;stroke:#7a5334;stroke-width:4.5;stroke-linecap:round}
+.mast-branch .brs{fill:none;stroke:#8a6340;stroke-width:2.6;stroke-linecap:round}
+.mast-branch .pt{fill:var(--pink-br)}.mast-branch .pc{fill:#ff8fbe}.mast-branch .bd{fill:#ffc7de}
+.mast-branch .pt{transform-box:fill-box;transform-origin:center;animation:petalBreathe 3.6s ease-in-out infinite}
+@keyframes branchWind{0%,100%{transform:rotate(-2.6deg)}30%{transform:rotate(2.8deg) translateX(-3px)}60%{transform:rotate(-1.2deg)}82%{transform:rotate(1.8deg)}}
+@keyframes petalBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+
+/* AVATAR kiểu ẢNH DÁN WASHI (tấm ảnh in dán băng keo) + nơ */
+.portrait{position:relative;width:212px;margin:14px auto 8px;transform:rotate(-3deg)}
+.portrait .photo{position:relative;width:212px;background:#fdfaf3;padding:11px 11px 32px;border-radius:5px;
+  box-shadow:0 16px 34px rgba(60,35,15,.32),0 2px 4px rgba(0,0,0,.14)}
+.portrait .photo .img{position:relative;width:100%;height:212px;border-radius:3px;overflow:hidden;background:#241521}
+.portrait .photo .img .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:2rem;color:rgba(255,182,214,.5)}
+/* ảnh thật phủ LÊN TRÊN chữ dự phòng — chỉ thấy chữ khi thiếu ảnh */
+.portrait .photo .img::after{content:"";position:absolute;inset:0;background:var(--avatar-img) center 18%/cover no-repeat}
+.portrait .photo .cap{position:absolute;left:0;right:0;bottom:9px;text-align:center;color:var(--pink);font-size:1rem}
+/* băng keo washi */
+.tape{position:absolute;z-index:4;width:76px;height:26px;background:rgba(242,168,200,.55);
+  border:1px dashed rgba(183,50,37,.3);box-shadow:0 2px 6px rgba(0,0,0,.14)}
+.tape::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.2) 0 3px,transparent 3px 7px)}
+.tape.l{top:-13px;left:-15px;transform:rotate(-27deg)}
+.tape.b{bottom:16px;right:-17px;transform:rotate(-18deg)}
+.portrait-bow{position:absolute;top:-30px;right:-8px;width:80px;height:auto;z-index:6;
+  filter:drop-shadow(0 4px 7px rgba(60,25,15,.35));transform:rotate(-14deg);transform-origin:60% 40%;animation:bowBob 5s ease-in-out infinite}
+@keyframes bowBob{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(-9deg) translateY(-1px)}}
+/* hanko seal accent */
+.hanko-seal{position:absolute;bottom:-12px;left:-12px;z-index:5;width:52px;height:52px;border:2.4px solid var(--hanko);border-radius:8px;
+  display:grid;place-items:center;font-family:var(--jp);font-weight:800;font-size:1.5rem;color:var(--hanko);
+  background:rgba(246,237,216,.9);transform:rotate(-7deg);box-shadow:0 2px 8px rgba(150,40,25,.2)}
+
+.masthead h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.3rem,6vw,3.4rem);color:var(--ink);line-height:1.06;margin-top:22px}
+.mast-brush{height:13px;width:min(260px,70%);margin:8px auto 0;display:block}
+.masthead .role{margin-top:15px;font-size:1.02rem;color:var(--ink-2)}
+.masthead .role b{color:var(--hanko);font-weight:600}
+.masthead .desc{margin:14px auto 0;max-width:52ch;color:var(--ink-3);font-size:.97rem;line-height:1.8}
+.avail{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:.76rem;font-weight:600;letter-spacing:.3px;
+  padding:7px 15px;border-radius:999px;border:1px solid var(--gold);background:rgba(183,50,37,.06);color:var(--hanko)}
+.avail .dot{width:7px;height:7px;border-radius:50%;background:var(--hanko);box-shadow:0 0 0 0 rgba(183,50,37,.5);animation:pl 2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(183,50,37,.45)}70%{box-shadow:0 0 0 9px rgba(183,50,37,0)}100%{box-shadow:0 0 0 0 rgba(183,50,37,0)}}
+.mast-cta{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-p{font-size:.86rem;font-weight:600;color:#fff5ec;background:linear-gradient(var(--hanko),#8f221a);padding:12px 22px;border-radius:999px;transition:.22s;box-shadow:0 8px 20px rgba(150,40,25,.28)}
+.btn-p:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-s{font-size:.86rem;font-weight:600;color:var(--hanko);padding:12px 20px;border-radius:999px;border:1px solid var(--hanko);transition:.22s}
+.btn-s:hover{background:rgba(183,50,37,.08);transform:translateY(-2px)}
+.theme-note{margin-top:18px;font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3)}
+.theme-note .jp{color:var(--hanko);font-size:.92rem;letter-spacing:2px;text-transform:none}
+
+/* ==================== CHAPTER DIVIDER ==================== */
+.chapter{text-align:center;margin:56px 0 30px}
+.chapter .crow{display:flex;align-items:center;justify-content:center;gap:16px}
+.chapter .crow svg{height:12px;flex:1;max-width:170px;opacity:.85}
+.chapter .med{flex:none;position:relative;width:62px;height:62px;border:2px solid var(--hanko);border-radius:50%;
+  display:grid;place-items:center;background:rgba(183,50,37,.05)}
+.chapter .med .k{font-family:var(--serif);font-weight:800;font-size:1.7rem;color:var(--hanko)}
+.chapter .med .num{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:.6rem;letter-spacing:2px;
+  font-weight:700;color:var(--hanko);background:var(--paper);padding:0 6px}
+.chapter .title{font-family:var(--serif);font-weight:800;font-size:clamp(1.7rem,4vw,2.4rem);color:var(--ink);margin-top:14px}
+.chapter .sub{color:var(--ink-3);font-size:.9rem;margin-top:4px}
+
+/* ==================== STATS BAND ==================== */
+.statsband{margin-top:10px;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:26px 0}
+.sb-top{display:flex;flex-wrap:wrap;align-items:center;gap:24px;justify-content:center}
+.sb-big{text-align:center}
+.sb-big b{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,8vw,4.4rem);color:var(--hanko);line-height:.9}
+.sb-big b span{font-size:.4em;color:var(--ink-3)}
+.sb-big em{display:block;font-style:normal;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+.sb-mini{display:flex;flex-direction:column;gap:8px;text-align:left}
+.sb-mini li{list-style:none;font-size:.9rem;color:var(--ink-2);padding-left:20px;position:relative}
+.sb-mini li::before{content:"❖";position:absolute;left:0;color:var(--hanko);font-size:.8rem}
+.sb-mini li b{color:var(--hanko);font-family:var(--serif);font-size:1.05rem;margin-right:4px}
+.sb-tag{text-align:center;margin-top:22px}
+.sb-tag h2{font-family:var(--serif);font-weight:800;font-size:clamp(1.4rem,3.2vw,2rem);color:var(--ink)}
+.sb-tag p{color:var(--ink-3);font-size:.96rem;max-width:60ch;margin:8px auto 0}
+.focus{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media(max-width:680px){.focus{grid-template-columns:1fr}}
+.fcard{background:var(--paper-hi);border:1px solid var(--gold);border-radius:12px;padding:18px 16px;text-align:center}
+.fcard .fk{font-family:var(--serif);font-weight:800;font-size:1.4rem;color:#fff5ec;width:44px;height:44px;margin:0 auto 10px;
+  display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--hanko),#8f221a)}
+.fcard h4{font-family:var(--serif);font-size:1rem;color:var(--ink);margin-bottom:5px}
+.fcard p{font-size:.83rem;color:var(--ink-3);line-height:1.55}
+
+/* ==================== PANELS / CARDS ==================== */
+.panel{position:relative;overflow:hidden;background:var(--paper-hi);border:1px solid var(--gold);border-radius:var(--radius);
+  padding:clamp(22px,3vw,32px);margin-bottom:22px;box-shadow:0 8px 22px rgba(80,55,20,.1);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.panel:hover{transform:translateY(-4px);border-color:var(--gold-2);box-shadow:0 18px 40px rgba(80,55,20,.18)}
+.panel::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,240,214,.5) 42%,rgba(183,50,37,.06) 54%,transparent 74%);
+  transform:translateX(-115%);transition:transform .85s cubic-bezier(.3,.7,.2,1)}
+.panel:hover::before{transform:translateX(115%)}
+.panel::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;z-index:4;
+  background:linear-gradient(90deg,var(--hanko),var(--pink));transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.panel:hover::after{transform:scaleX(1)}
+.meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:4px}
+.when{font-size:.76rem;font-weight:600;letter-spacing:.4px;color:var(--gold-2)}
+.badge{font-size:.66rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:6px;background:linear-gradient(135deg,var(--hanko),#8f221a);color:#fff}
+.panel h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:var(--ink);line-height:1.2;margin:4px 0 2px}
+.panel .role{color:var(--hanko);font-weight:600;font-size:.95rem;margin-bottom:10px}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:8px}
+.panel ul li{position:relative;padding-left:24px;color:var(--ink-2);font-size:.95rem;line-height:1.7;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.panel ul li::before{content:"❋";position:absolute;left:0;top:1px;color:var(--pink);font-size:.82rem}
+.panel:hover ul li{transform:translateX(6px)}
+.panel:hover ul li:nth-child(2){transition-delay:.07s}
+.panel:hover ul li:nth-child(3){transition-delay:.14s}
+.panel ul li b{color:var(--ink)}
+
+/* activity photos — show FULL */
+.act-fig{margin:-4px 0 16px;border-radius:12px;overflow:hidden;border:1px solid var(--gold);background:#efe3c6}
+.act-fig img{display:block;width:100%;height:auto}
+
+/* about */
+.about-lead{font-size:1.02rem;color:var(--ink-2);line-height:1.8;max-width:64ch;margin:0 auto}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;justify-content:center}
+.chip{font-size:.8rem;font-weight:500;color:var(--ink-2);padding:7px 14px;border-radius:999px;border:1px solid var(--gold);background:var(--paper-hi);transition:.2s}
+.chip.key{color:var(--hanko);border-color:var(--hanko);background:rgba(183,50,37,.06)}
+.chip:hover{transform:translateY(-2px)}
+.edu{margin-top:22px}
+.edu h4{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:2px}
+.edu .when{display:block;margin-bottom:14px}
+.edu-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-top:1px dashed var(--gold);font-size:.92rem}
+.edu-row .k{color:var(--ink-3)}.edu-row .v{color:var(--ink);font-weight:500;text-align:right}
+.acca-mods{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.mod{font-size:.72rem;font-weight:600;padding:4px 9px;border-radius:6px;border:1px solid var(--gold);color:var(--ink-3);background:var(--paper-hi)}
+.mod.done{color:#2f6b3a;border-color:#9cbf8f;background:rgba(120,170,110,.12)}
+.mod.done::before{content:"✓ "}
+.mod.cur{color:var(--hanko);border-color:var(--hanko);background:rgba(183,50,37,.08)}
+
+/* skills grid */
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.skill-grid{grid-template-columns:1fr}}
+.skill-box{background:var(--paper-hi);border:1px solid var(--gold);border-radius:12px;padding:20px;position:relative;overflow:hidden;
+  transition:transform .35s,border-color .3s,box-shadow .3s}
+.skill-box:hover{transform:translateY(-3px);border-color:var(--gold-2);box-shadow:0 14px 30px rgba(80,55,20,.14)}
+.skill-box h4{font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.skill-box h4 .jp{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(135deg,var(--hanko),#8f221a);color:#fff5ec;font-size:1rem}
+.skill-box .chips{justify-content:flex-start;margin-top:0}
+
+/* contact */
+.contact-lead{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,3vw,2rem);color:var(--ink);text-align:center;max-width:26ch;margin:0 auto 26px;line-height:1.4}
+.contact-lead .hl{color:var(--hanko)}
+.contact-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.contact-cta a,.contact-cta span{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;padding:12px 20px;border-radius:999px;transition:.22s}
+.contact-cta .c-mail{color:#fff5ec;background:linear-gradient(var(--hanko),#8f221a);box-shadow:0 8px 20px rgba(150,40,25,.25)}
+.contact-cta .c-mail:hover{transform:translateY(-2px)}
+.contact-cta .c-pill{color:var(--hanko);border:1px solid var(--hanko)}
+.contact-cta .c-pill:hover{background:rgba(183,50,37,.08);transform:translateY(-2px)}
+.contact-cta .c-soft{color:var(--ink-3);border:1px solid var(--gold)}
+
+/* partners */
+.partners{margin-top:44px;text-align:center;border-top:1px dashed var(--gold);padding-top:26px}
+.partners .lb{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);margin-bottom:14px}
+.partners .row{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center}
+.partners .row span{font-family:var(--serif);font-size:1rem;color:var(--ink-2)}
+.partners .row span:not(:last-child)::after{content:"·";margin-left:22px;color:var(--gold-2)}
+
+/* footer */
+.foot{text-align:center;padding:34px 0 10px;color:var(--ink-3);font-size:.82rem}
+.foot .jp{font-family:var(--serif);color:var(--hanko);font-size:1.1rem;display:block;margin:8px 0}
+.foot .ds-badge{display:inline-block;margin-bottom:14px;font-size:.85rem;letter-spacing:.4px;color:var(--hanko);
+  padding:8px 18px;border:1px solid var(--gold);border-radius:999px;background:rgba(183,50,37,.05)}
+.foot .ds-badge .jp{display:inline;font-size:.95rem;color:var(--hanko);margin:0}
+.foot .ds-badge b{font-weight:800}
+
+/* ==================== CUỘN GIẤY: cơ chế cuộn lên / thả xuống ==================== */
+.paper-roll{overflow:hidden;max-height:var(--openh,none);
+  transition:max-height 1.5s cubic-bezier(.62,0,.2,1)}
+.scroll.rolled .paper-roll{max-height:0}
+.scroll.no-anim .paper-roll,.scroll.no-anim .roll-paper{transition:none}
+/* cụm con lăn dưới = thanh gỗ + tua đỏ (tay cầm kéo) */
+.roller{position:relative;z-index:6;cursor:grab;touch-action:none}
+.roller:active{cursor:grabbing}
+.roller .rod.bottom{margin:0 8px}
+/* khi đang cuộn lên: hiện mép giấy cuộn quanh thanh gỗ */
+.roll-paper{height:0;margin:0 14px;overflow:hidden;border-radius:0 0 40px 40px/0 0 14px 14px;
+  background:linear-gradient(var(--paper-3),var(--paper-2));box-shadow:0 6px 14px rgba(60,40,15,.25) inset;
+  transition:height 1.5s cubic-bezier(.62,0,.2,1)}
+.scroll.rolled .roll-paper{height:16px}
+/* nhãn gợi ý ở tay cầm */
+.pull-hint{position:absolute;left:50%;top:24px;transform:translateX(-50%);white-space:nowrap;
+  font-size:.68rem;letter-spacing:.5px;color:#e6d5b8;background:rgba(40,26,12,.82);
+  padding:5px 11px;border-radius:999px;border:1px solid rgba(255,207,136,.35);
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.roller:hover .pull-hint{opacity:1}
+@media(hover:none){.pull-hint{display:none}}
+
+/* ==================== CURSOR: đốm lửa hồng + vệt lửa ==================== */
+*{cursor:var(--cur) 12 13,auto!important}
+input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
+#curFlame{position:fixed;left:0;top:0;width:40px;height:40px;pointer-events:none;z-index:10001;transform:translate(-200px,-200px);will-change:transform;opacity:0;transition:opacity .22s}
+#curFlame.on{opacity:1}
+#curFlame svg{display:block;overflow:visible}
+#curFlame .flameFx{filter:drop-shadow(0 0 5px rgba(255,120,175,.6))}
+#curFlame .fa{transform-box:fill-box;transform-origin:50% 92%}
+#curFlame .fa1{animation:flk1 .5s ease-in-out infinite}
+#curFlame .fa2{animation:flk2 .38s ease-in-out infinite}
+#curFlame .fa3{animation:flk3 .3s ease-in-out infinite}
+@keyframes flk1{0%,100%{transform:scaleY(1) scaleX(1) rotate(-2.5deg)}30%{transform:scaleY(1.18) scaleX(.9) rotate(1.5deg)}60%{transform:scaleY(.9) scaleX(1.08) rotate(2.5deg)}}
+@keyframes flk2{0%,100%{transform:scaleY(1) scaleX(1) rotate(2deg)}35%{transform:scaleY(1.24) scaleX(.86) rotate(-2deg)}70%{transform:scaleY(.86) scaleX(1.12) rotate(1deg)}}
+@keyframes flk3{0%,100%{transform:scaleY(1.06) scaleX(.97) translateY(-.3px)}40%{transform:scaleY(.84) scaleX(1.12) translateY(.5px)}70%{transform:scaleY(1.16) scaleX(.9)}}
+@media(hover:none){#curFlame{display:none}*{cursor:auto!important}}
+#trail{position:fixed;inset:0;z-index:9990;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wall" id="wall" aria-hidden="true"></div>
+<div class="wall-veil" aria-hidden="true"></div>
+<div class="center-img" aria-hidden="true"></div>
+<div class="side-img l" aria-hidden="true"></div>
+<div class="side-img r" aria-hidden="true"></div>
+<canvas id="petals" aria-hidden="true"></canvas>
+<div class="wall-kanji l" aria-hidden="true">一期一会</div>
+<div class="wall-kanji r" aria-hidden="true">誠心誠意</div>
+<svg class="wall-branch tl" viewBox="0 0 240 150" aria-hidden="true">
+  <path d="M2 4 C50 20 92 44 128 78 C158 106 190 124 232 138" class="br"/>
+  <path d="M40 16 Q54 6 66 8" class="brs"/><path d="M74 30 Q88 20 100 23" class="brs"/><path d="M110 52 Q124 42 136 46" class="brs"/><path d="M150 84 Q164 76 176 81" class="brs"/>
+  <g><ellipse cx="66" cy="6" rx="7" ry="4.6" transform="rotate(140 66 6)" class="pt"/><ellipse cx="58" cy="6" rx="7" ry="4.6" transform="rotate(212 58 6)" class="pt"/><ellipse cx="56" cy="-1" rx="7" ry="4.6" transform="rotate(284 56 -1)" class="pt"/><ellipse cx="63" cy="-6" rx="7" ry="4.6" transform="rotate(356 63 -6)" class="pt"/><ellipse cx="70" cy="-1" rx="7" ry="4.6" transform="rotate(428 70 -1)" class="pt"/><circle cx="62" cy="0" r="3" class="pc"/></g>
+  <g><ellipse cx="102" cy="20" rx="6.4" ry="4.2" transform="rotate(150 102 20)" class="pt"/><ellipse cx="94" cy="20" rx="6.4" ry="4.2" transform="rotate(222 94 20)" class="pt"/><ellipse cx="92" cy="14" rx="6.4" ry="4.2" transform="rotate(294 92 14)" class="pt"/><ellipse cx="99" cy="10" rx="6.4" ry="4.2" transform="rotate(366 99 10)" class="pt"/><ellipse cx="105" cy="15" rx="6.4" ry="4.2" transform="rotate(438 105 15)" class="pt"/><circle cx="98" cy="15" r="2.7" class="pc"/></g>
+  <g><ellipse cx="138" cy="43" rx="7.4" ry="4.9" transform="rotate(132 138 43)" class="pt"/><ellipse cx="129" cy="44" rx="7.4" ry="4.9" transform="rotate(204 129 44)" class="pt"/><ellipse cx="126" cy="36" rx="7.4" ry="4.9" transform="rotate(276 126 36)" class="pt"/><ellipse cx="134" cy="31" rx="7.4" ry="4.9" transform="rotate(348 134 31)" class="pt"/><ellipse cx="142" cy="36" rx="7.4" ry="4.9" transform="rotate(420 142 36)" class="pt"/><circle cx="133" cy="38" r="3.2" class="pc"/></g>
+  <g><ellipse cx="178" cy="78" rx="6.6" ry="4.4" transform="rotate(120 178 78)" class="pt"/><ellipse cx="170" cy="80" rx="6.6" ry="4.4" transform="rotate(192 170 80)" class="pt"/><ellipse cx="167" cy="73" rx="6.6" ry="4.4" transform="rotate(264 167 73)" class="pt"/><ellipse cx="174" cy="68" rx="6.6" ry="4.4" transform="rotate(336 174 68)" class="pt"/><ellipse cx="181" cy="72" rx="6.6" ry="4.4" transform="rotate(408 181 72)" class="pt"/><circle cx="173" cy="74" r="2.8" class="pc"/></g>
+  <circle cx="30" cy="12" r="2.4" class="bd"/><circle cx="118" cy="60" r="2.4" class="bd"/><circle cx="200" cy="120" r="2.4" class="bd"/>
+</svg>
+<svg class="wall-branch br" viewBox="0 0 240 150" aria-hidden="true">
+  <path d="M2 4 C50 20 92 44 128 78 C158 106 190 124 232 138" class="br"/>
+  <path d="M40 16 Q54 6 66 8" class="brs"/><path d="M74 30 Q88 20 100 23" class="brs"/><path d="M110 52 Q124 42 136 46" class="brs"/><path d="M150 84 Q164 76 176 81" class="brs"/>
+  <g><ellipse cx="66" cy="6" rx="7" ry="4.6" transform="rotate(140 66 6)" class="pt"/><ellipse cx="58" cy="6" rx="7" ry="4.6" transform="rotate(212 58 6)" class="pt"/><ellipse cx="56" cy="-1" rx="7" ry="4.6" transform="rotate(284 56 -1)" class="pt"/><ellipse cx="63" cy="-6" rx="7" ry="4.6" transform="rotate(356 63 -6)" class="pt"/><ellipse cx="70" cy="-1" rx="7" ry="4.6" transform="rotate(428 70 -1)" class="pt"/><circle cx="62" cy="0" r="3" class="pc"/></g>
+  <g><ellipse cx="102" cy="20" rx="6.4" ry="4.2" transform="rotate(150 102 20)" class="pt"/><ellipse cx="94" cy="20" rx="6.4" ry="4.2" transform="rotate(222 94 20)" class="pt"/><ellipse cx="92" cy="14" rx="6.4" ry="4.2" transform="rotate(294 92 14)" class="pt"/><ellipse cx="99" cy="10" rx="6.4" ry="4.2" transform="rotate(366 99 10)" class="pt"/><ellipse cx="105" cy="15" rx="6.4" ry="4.2" transform="rotate(438 105 15)" class="pt"/><circle cx="98" cy="15" r="2.7" class="pc"/></g>
+  <g><ellipse cx="138" cy="43" rx="7.4" ry="4.9" transform="rotate(132 138 43)" class="pt"/><ellipse cx="129" cy="44" rx="7.4" ry="4.9" transform="rotate(204 129 44)" class="pt"/><ellipse cx="126" cy="36" rx="7.4" ry="4.9" transform="rotate(276 126 36)" class="pt"/><ellipse cx="134" cy="31" rx="7.4" ry="4.9" transform="rotate(348 134 31)" class="pt"/><ellipse cx="142" cy="36" rx="7.4" ry="4.9" transform="rotate(420 142 36)" class="pt"/><circle cx="133" cy="38" r="3.2" class="pc"/></g>
+  <g><ellipse cx="178" cy="78" rx="6.6" ry="4.4" transform="rotate(120 178 78)" class="pt"/><ellipse cx="170" cy="80" rx="6.6" ry="4.4" transform="rotate(192 170 80)" class="pt"/><ellipse cx="167" cy="73" rx="6.6" ry="4.4" transform="rotate(264 167 73)" class="pt"/><ellipse cx="174" cy="68" rx="6.6" ry="4.4" transform="rotate(336 174 68)" class="pt"/><ellipse cx="181" cy="72" rx="6.6" ry="4.4" transform="rotate(408 181 72)" class="pt"/><circle cx="173" cy="74" r="2.8" class="pc"/></g>
+  <circle cx="30" cy="12" r="2.4" class="bd"/><circle cx="118" cy="60" r="2.4" class="bd"/><circle cx="200" cy="120" r="2.4" class="bd"/>
+</svg>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar" id="topbar">
+  <a href="#top" class="brand">
+    <span class="mk">竹</span>
+    <span class="tx"><b>Phan Bảo Ngọc</b><small>Kế toán – Kiểm toán · ACCA</small></span>
+  </a>
+  <nav class="topmenu" id="topmenu">
+    <a href="#about">Giới thiệu</a>
+    <a href="#exp">Kinh nghiệm</a>
+    <a href="#awards">Giải thưởng</a>
+    <a href="#research">Nghiên cứu</a>
+    <a href="#act">Hoạt động</a>
+    <a href="#skills">Kỹ năng</a>
+  </nav>
+  <div class="nav-right">
+    <button class="mbtn" id="musicBtn" title="Bật/tắt nhạc nền" aria-label="Bật/tắt nhạc nền">
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><line x1="17" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="17" y2="15"/></svg>
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg>
+    </button>
+    <a href="#contact" class="nav-cta">Liên hệ</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ SCROLL ============ -->
+<div class="scroll" id="top">
+  <div class="cord"></div>
+  <div class="rod top"></div>
+  <div class="paper-roll" id="paperRoll">
+  <div class="paper">
+
+    <!-- ===== MASTHEAD ===== -->
+    <div class="masthead">
+      <div class="vtitle">絵巻</div>
+      <div class="vsub">記録 · 二〇二六</div>
+      <svg class="mast-branch" viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M2 4 C50 20 92 44 128 78 C158 106 190 124 232 138" class="br"/>
+        <path d="M40 16 Q54 6 66 8" class="brs"/><path d="M74 30 Q88 20 100 23" class="brs"/>
+        <path d="M110 52 Q124 42 136 46" class="brs"/><path d="M150 84 Q164 76 176 81" class="brs"/>
+        <g><ellipse cx="66" cy="6" rx="7" ry="4.6" transform="rotate(140 66 6)" class="pt"/><ellipse cx="58" cy="6" rx="7" ry="4.6" transform="rotate(212 58 6)" class="pt"/><ellipse cx="56" cy="-1" rx="7" ry="4.6" transform="rotate(284 56 -1)" class="pt"/><ellipse cx="63" cy="-6" rx="7" ry="4.6" transform="rotate(356 63 -6)" class="pt"/><ellipse cx="70" cy="-1" rx="7" ry="4.6" transform="rotate(428 70 -1)" class="pt"/><circle cx="62" cy="0" r="3" class="pc"/></g>
+        <g><ellipse cx="102" cy="20" rx="6.4" ry="4.2" transform="rotate(150 102 20)" class="pt"/><ellipse cx="94" cy="20" rx="6.4" ry="4.2" transform="rotate(222 94 20)" class="pt"/><ellipse cx="92" cy="14" rx="6.4" ry="4.2" transform="rotate(294 92 14)" class="pt"/><ellipse cx="99" cy="10" rx="6.4" ry="4.2" transform="rotate(366 99 10)" class="pt"/><ellipse cx="105" cy="15" rx="6.4" ry="4.2" transform="rotate(438 105 15)" class="pt"/><circle cx="98" cy="15" r="2.7" class="pc"/></g>
+        <g><ellipse cx="138" cy="43" rx="7.4" ry="4.9" transform="rotate(132 138 43)" class="pt"/><ellipse cx="129" cy="44" rx="7.4" ry="4.9" transform="rotate(204 129 44)" class="pt"/><ellipse cx="126" cy="36" rx="7.4" ry="4.9" transform="rotate(276 126 36)" class="pt"/><ellipse cx="134" cy="31" rx="7.4" ry="4.9" transform="rotate(348 134 31)" class="pt"/><ellipse cx="142" cy="36" rx="7.4" ry="4.9" transform="rotate(420 142 36)" class="pt"/><circle cx="133" cy="38" r="3.2" class="pc"/></g>
+        <g><ellipse cx="178" cy="78" rx="6.6" ry="4.4" transform="rotate(120 178 78)" class="pt"/><ellipse cx="170" cy="80" rx="6.6" ry="4.4" transform="rotate(192 170 80)" class="pt"/><ellipse cx="167" cy="73" rx="6.6" ry="4.4" transform="rotate(264 167 73)" class="pt"/><ellipse cx="174" cy="68" rx="6.6" ry="4.4" transform="rotate(336 174 68)" class="pt"/><ellipse cx="181" cy="72" rx="6.6" ry="4.4" transform="rotate(408 181 72)" class="pt"/><circle cx="173" cy="74" r="2.8" class="pc"/></g>
+        <circle cx="30" cy="12" r="2.4" class="bd"/><circle cx="118" cy="60" r="2.4" class="bd"/><circle cx="200" cy="120" r="2.4" class="bd"/>
+      </svg>
+
+      <div class="portrait">
+        <div class="tape l"></div>
+        <div class="tape b"></div>
+        <div class="photo"><div class="img"><span class="ph">PBN</span></div><span class="cap">❀</span></div>
+        <svg class="portrait-bow" viewBox="0 0 132 116" aria-hidden="true">
+          <path d="M60 56 L41 110 L52 100 L61 112 L69 60 Z" fill="#cf7ba0"/>
+          <path d="M74 56 L95 106 L82 99 L76 112 L65 60 Z" fill="#c46f96"/>
+          <path d="M66 48 L12 20 L28 50 L12 78 L66 60 Z" fill="#f0a2c5"/>
+          <path d="M66 48 L120 20 L104 50 L120 78 L66 60 Z" fill="#ef9ec2"/>
+          <path d="M65 52 L30 36 L39 52 L30 68 L65 58 Z" fill="#d585ab" opacity=".6"/>
+          <path d="M67 52 L102 36 L93 52 L102 68 L67 58 Z" fill="#d585ab" opacity=".6"/>
+          <path d="M64 49 L19 26 L26 34 L60 50 Z" fill="#ffcbe0" opacity=".85"/>
+          <path d="M68 49 L113 26 L106 34 L72 50 Z" fill="#ffcbe0" opacity=".5"/>
+          <path d="M57 40 Q66 35 75 40 L73 70 Q66 75 59 70 Z" fill="#bd6a92"/>
+          <path d="M61 43 Q62 55 61 67" stroke="#e6a0c0" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>
+          <path d="M70 43 Q71 55 70 67" stroke="#a85a80" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/>
+        </svg>
+        <div class="hanko-seal">玉</div>
+      </div>
+
+      <h1>Phan Bảo Ngọc</h1>
+      <svg class="mast-brush" viewBox="0 0 260 14" preserveAspectRatio="none"><path d="M3,8 C46,2 82,12 130,7 C178,2 214,11 257,5" fill="none" stroke="#b73225" stroke-width="4" stroke-linecap="round"/></svg>
+      <p class="role">Sinh viên <b>Kế toán – Kiểm toán</b> định hướng ACCA · hướng tới <b>Core Assurance @ EY</b></p>
+      <p class="desc">Mạnh về phân tích báo cáo tài chính và nghiên cứu học thuật, giàu kinh nghiệm lãnh đạo qua việc tổ chức các cuộc thi kế toán – kiểm toán quy mô toàn quốc.</p>
+      <span class="avail"><span class="dot"></span>Sẵn sàng thực tập Core Assurance</span>
+      <div class="mast-cta">
+        <a href="#contact" class="btn-p">Liên hệ ngay</a>
+        <a href="#exp" class="btn-s">Xem kinh nghiệm →</a>
+      </div>
+      <div class="theme-note"><span class="jp">鬼滅の刃</span> Demon Slayer&nbsp;&nbsp;·&nbsp;&nbsp;<span class="jp">竈門禰豆子</span> Kamado Nezuko</div>
+    </div>
+
+    <!-- ===== STATS BAND ===== -->
+    <div class="statsband reveal">
+      <div class="sb-top">
+        <div class="sb-big"><b>3.65<span>/4.0</span></b><em>GPA tích lũy</em></div>
+        <ul class="sb-mini">
+          <li><b>7.5</b> IELTS · Tiếng Anh</li>
+          <li><b>7/9</b> môn F ACCA đã hoàn thành</li>
+          <li><b>~1000</b> thí sinh · Cúp KTV Tài năng 15</li>
+        </ul>
+      </div>
+      <div class="sb-tag">
+        <h2>Vững chuyên môn, giàu trải nghiệm tổ chức</h2>
+        <p>Sinh viên năm cuối Kế toán – Kiểm toán với đam mê phân tích, kiểm toán và nghiên cứu; hướng tới sự nghiệp Core Assurance tại EY Việt Nam.</p>
+      </div>
+      <div class="focus">
+        <div class="fcard"><div class="fk jp">析</div><h4>Phân tích tài chính</h4><p>Phân tích BCTC, thẩm định tín dụng, đánh giá năng lực tài chính doanh nghiệp.</p></div>
+        <div class="fcard"><div class="fk jp">監</div><h4>Kiểm soát &amp; Kiểm toán</h4><p>Tiếp cận quy trình kiểm soát nội bộ, hướng tới Core Assurance @ EY.</p></div>
+        <div class="fcard"><div class="fk jp">究</div><h4>Nghiên cứu &amp; Lãnh đạo</h4><p>Nghiên cứu định lượng đạt giải; dẫn dắt CLB &amp; cuộc thi toàn quốc.</p></div>
+      </div>
+    </div>
+
+    <!-- ===== 01 GIỚI THIỆU ===== -->
+    <section id="about">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">01</span><span class="k jp">華</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Giới thiệu</div>
+      </div>
+      <p class="about-lead reveal">Định hướng theo đuổi chứng chỉ <b style="color:var(--hanko)">ACCA</b> song song với chương trình Kế toán – Kiểm toán, mình chú trọng nền tảng phân tích, tư duy phản biện và trải nghiệm thực tế. Bên cạnh học thuật, mình dành nhiều tâm huyết cho công tác tổ chức — dẫn dắt câu lạc bộ chuyên môn và các cuộc thi kiểm toán toàn quốc — để rèn kỹ năng lãnh đạo, đàm phán và quản trị.</p>
+      <div class="chips reveal">
+        <span class="chip key">Phân tích BCTC</span>
+        <span class="chip key">Kiểm soát nội bộ</span>
+        <span class="chip">Nghiên cứu định lượng</span>
+        <span class="chip">Lãnh đạo &amp; tổ chức</span>
+      </div>
+      <div class="panel edu reveal">
+        <span class="when">09/2023 – Dự kiến 2027</span>
+        <h4>Đại học Ngoại thương (FTU)</h4>
+        <div class="edu-row"><span class="k">Chuyên ngành</span><span class="v">Kế toán – Kiểm toán · ACCA</span></div>
+        <div class="edu-row"><span class="k">GPA tích lũy</span><span class="v">3.65 / 4.00</span></div>
+        <div class="edu-row"><span class="k">Học bổng</span><span class="v">Khuyến khích SV Giỏi (2024)</span></div>
+        <div class="edu-row" style="display:block">
+          <span class="k">Tiến độ ACCA · 7/9 môn</span>
+          <div class="acca-mods">
+            <span class="mod done">BT/F1</span><span class="mod done">MA/F2</span><span class="mod done">FA/F3</span>
+            <span class="mod done">LW/F4</span><span class="mod done">PM/F5</span><span class="mod done">FR/F7</span>
+            <span class="mod done">AA/F8</span><span class="mod cur">FM/F9 · đang học</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 KINH NGHIỆM ===== -->
+    <section id="exp">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">02</span><span class="k jp">務</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Kinh nghiệm</div>
+      </div>
+      <div class="panel reveal">
+        <div class="meta"><span class="when">02/2026 – 04/2026 · Hà Nội</span></div>
+        <h3>Ngân hàng TMCP Công Thương Việt Nam — VietinBank</h3>
+        <div class="role">Thực tập sinh Quan hệ Khách hàng</div>
+        <ul>
+          <li>Phân tích báo cáo tài chính của khách hàng doanh nghiệp để đánh giá hiệu quả hoạt động kinh doanh.</li>
+          <li>Rà soát hồ sơ thẩm định tín dụng, tiếp cận và làm quen với quy trình kiểm soát nội bộ của ngân hàng.</li>
+          <li>Hỗ trợ đánh giá năng lực tài chính và hoạt động kinh doanh của khách hàng, kiểm tra chứng từ phục vụ công tác thẩm định tín dụng.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 03 GIẢI THƯỞNG ===== -->
+    <section id="awards">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">03</span><span class="k jp">賞</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Giải thưởng</div>
+      </div>
+      <div class="panel reveal">
+        <div class="meta"><span class="when">05/2026 · SAFC – Trường Kinh tế, ĐH Bách khoa Hà Nội</span><span class="badge">Top 3</span></div>
+        <h3>Managerial Accounting Mastermind</h3>
+        <div class="role">Á quân 2 (2nd Runner-up) · Top 3 chung cuộc</div>
+        <ul>
+          <li>Tranh tài cùng các đội đến từ nhiều trường đại học, giải quyết những tình huống kế toán quản trị và ra quyết định kinh doanh dưới áp lực thời gian.</li>
+          <li>Vận dụng phân tích chi phí – sản lượng – lợi nhuận (CVP), lập ngân sách, phân tích chênh lệch và đo lường hiệu quả hoạt động để đưa ra các khuyến nghị thực tiễn.</li>
+          <li>Rèn luyện tư duy phân tích, kỹ năng làm việc nhóm và thuyết trình qua nhiều vòng thi.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 04 NGHIÊN CỨU ===== -->
+    <section id="research">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">04</span><span class="k jp">究</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Nghiên cứu</div>
+      </div>
+      <div class="panel reveal">
+        <div class="meta"><span class="when">2025 · Đại học Ngoại thương</span><span class="badge">Giải Nhất cấp Khoa</span></div>
+        <h3>Tác động của truyền thông mạng xã hội đến ý định &amp; hành vi tiêu dùng xanh của Gen Z tại Hà Nội</h3>
+        <ul>
+          <li>Thực hiện đề tài nghiên cứu thực nghiệm về ảnh hưởng của mạng xã hội tới ý định và hành vi tiêu dùng xanh của Gen Z tại Hà Nội.</li>
+          <li>Thiết kế phương pháp nghiên cứu, thu thập &amp; phân tích dữ liệu khảo sát bằng kỹ thuật định lượng, chuyển kết quả thành khuyến nghị thực tiễn.</li>
+          <li>Đạt <b>Giải Nhất</b> cấp Khoa Kế toán – Kiểm toán (06/2025) và <b>Giải Ba</b> cấp Trường (05/2025).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 05 HOẠT ĐỘNG ===== -->
+    <section id="act">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">05</span><span class="k jp">団</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Hoạt động</div>
+      </div>
+      <div class="panel reveal">
+        <figure class="act-fig"><img src="CLUB.jpg" alt="Cúp Kiểm toán viên Tài năng"></figure>
+        <div class="meta"><span class="when">11/2023 – 12/2025</span></div>
+        <h3>CLB Kế toán – Kiểm toán Tương lai (FTU)</h3>
+        <div class="role">Chủ tịch</div>
+        <ul>
+          <li>Đàm phán trực tiếp với EY Việt Nam, ACCA, VCCA và VACPA để huy động tài trợ tài chính &amp; kỹ thuật cho hai cuộc thi kiểm toán và thuế quy mô toàn quốc.</li>
+          <li>Dẫn dắt tổ chức “Cúp Kiểm toán viên Tài năng” lần thứ 15 — cuộc thi kiểm toán toàn quốc thu hút khoảng 1.000 thí sinh; toàn bộ Top 6 chung cuộc nhận offer thực tập từ EY Hà Nội &amp; EY TP.HCM.</li>
+          <li>Quản lý &amp; giám sát hoạt động tài chính của CLB: lập ngân sách, theo dõi chi phí, kiểm soát dòng tiền.</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <figure class="act-fig"><img src="YOUTH UNION.jpg" alt="Hội nghị kiện toàn Ban Chấp hành Đoàn trường"></figure>
+        <div class="meta"><span class="when">10/2025 – Hiện tại</span></div>
+        <h3>Đoàn Thanh niên Đại học Ngoại thương</h3>
+        <div class="role">Ủy viên Ban Chấp hành</div>
+        <ul>
+          <li>Một trong 8 đại diện sinh viên trong Ban Chấp hành Đoàn trường, góp phần vào công tác quản trị sinh viên và các sáng kiến toàn trường.</li>
+          <li>Là đầu mối kết nối giữa Ban Chấp hành và các CLB sinh viên: điều phối thông tin, hỗ trợ triển khai các hoạt động của tổ chức.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 06 KỸ NĂNG ===== -->
+    <section id="skills">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">06</span><span class="k jp">技</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Kỹ năng</div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-box reveal"><h4><span class="jp">専</span>Chuyên môn nổi bật</h4>
+          <div class="chips"><span class="chip key">Phân tích báo cáo tài chính</span><span class="chip key">Thẩm định tín dụng</span><span class="chip">Kiểm soát nội bộ</span><span class="chip">Đánh giá năng lực tài chính</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">心</span>Kỹ năng mềm</h4>
+          <div class="chips"><span class="chip key">Tư duy phân tích</span><span class="chip">Giải quyết vấn đề</span><span class="chip">Giao tiếp</span><span class="chip">Làm việc nhóm</span><span class="chip">Quản lý thời gian</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">計</span>Tin học văn phòng</h4>
+          <div class="chips"><span class="chip key">Excel</span><span class="chip">PowerPoint</span><span class="chip">Word</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">言</span>Ngoại ngữ</h4>
+          <div class="chips"><span class="chip key">Tiếng Việt · Bản ngữ</span><span class="chip key">Tiếng Anh · IELTS 7.5</span><span class="chip">Tiếng Trung · HSK 3</span></div></div>
+      </div>
+    </section>
+
+    <!-- ===== 07 LIÊN HỆ ===== -->
+    <section id="contact">
+      <div class="chapter reveal">
+        <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
+          <span class="med"><span class="num">07</span><span class="k jp">縁</span></span>
+          <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
+        <div class="title">Liên hệ</div>
+      </div>
+      <p class="contact-lead reveal">Rất mong được <span class="hl">đồng hành</span> cùng đội ngũ Core Assurance.</p>
+      <div class="contact-cta reveal">
+        <a class="c-mail" href="mailto:ngocpb1910.work@gmail.com">✉ &nbsp;ngocpb1910.work@gmail.com</a>
+        <a class="c-pill" href="https://www.linkedin.com/in/b%E1%BA%A3o-ng%E1%BB%8Dc-phan-63678838b/" target="_blank" rel="noopener noreferrer">in&nbsp; LinkedIn</a>
+        <a class="c-pill" href="tel:+84933868074">☎ &nbsp;(+84) 933 868 074</a>
+        <span class="c-soft">⌖ &nbsp;Hà Nội, Việt Nam</span>
+      </div>
+
+      <!-- partners -->
+      <div class="partners reveal">
+        <div class="lb">Học tập · Thực tập · Hợp tác cùng</div>
+        <div class="row"><span>EY Việt Nam</span><span>ACCA</span><span>VCCA</span><span>VACPA</span><span>VietinBank</span><span>ĐH Ngoại thương</span><span>SAFC · HUST</span></div>
+      </div>
+
+      <div class="foot">
+        <span class="ds-badge"><b class="jp">鬼滅の刃</b> Demon Slayer&nbsp;&nbsp;·&nbsp;&nbsp;<b class="jp">竈門禰豆子</b> Kamado Nezuko</span>
+        <span>Thiết kế lấy cảm hứng từ <em>Kimetsu no Yaiba · Nezuko</em></span>
+        <span class="jp">華 開</span>
+        <span>Phan Bảo Ngọc · Kế toán – Kiểm toán</span>
+      </div>
+    </section>
+
+  </div>
+  </div>
+  <div class="roller" id="roller" title="Bấm hoặc kéo để cuộn giấy lên/xuống">
+    <div class="roll-paper"></div>
+    <div class="rod bottom"></div>
+    <div class="tassel"></div>
+    <div class="pull-hint">Bấm / kéo để cuộn ↑↓</div>
+  </div>
+</div>
+
+<!-- audio -->
+<audio id="bgm" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.m4a" type="audio/mp4">
+  <source src="music.ogg" type="audio/ogg">
+</audio>
+
+<!-- cursor flame -->
+<div id="curFlame" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g class="flameFx"><g class="fa fa1"><path d="M12 15.5 C8 14.7 5.7 11.5 7 7.8 C7.5 9.6 8.6 10.3 9.9 9.9 C8.1 6.8 9.7 3.6 10.6 1.4 C11.7 4.2 13.9 5.6 15 7.9 C15.4 6.6 16.3 6.8 16.7 7.7 C18 11.2 16 14.8 12 15.5 Z" fill="#e173a1"/></g><g class="fa fa2"><path d="M12 14 C9 13.4 7.2 10.8 8.1 8.2 C8.5 9.5 9.3 10 10.2 9.7 C9 7.3 10.3 4.6 11 3 C11.8 5 13.4 6.1 14.2 7.8 C14.5 6.9 15.1 7 15.4 7.6 C16.3 10.2 14.8 13.4 12 14 Z" fill="#ffa6cc"/></g><g class="fa fa3"><path d="M11.9 12.6 C9.9 12.1 8.8 10.3 9.4 8.5 C9.7 9.3 10.2 9.6 10.8 9.4 C10 7.8 10.9 5.9 11.4 4.7 C12 6.1 13 6.8 13.5 8 C13.7 7.4 14.1 7.5 14.3 7.9 C15 9.6 13.9 12 11.9 12.6 Z" fill="#ffe3ef"/></g></g></svg></div>
+<canvas id="trail" aria-hidden="true"></canvas>
+
+<script>
+/* ---------- CUỘN GIẤY: thả xuống khi vào + bấm/kéo tay cầm để cuộn lên/xuống ---------- */
+(function(){
+  var scroll=document.getElementById('top'),roll=document.getElementById('paperRoll'),roller=document.getElementById('roller');
+  if(!scroll||!roll||!roller)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function measure(){ roll.style.setProperty('--openh',(roll.scrollHeight+80)+'px'); }
+  measure(); addEventListener('resize',measure); addEventListener('load',function(){ setTimeout(measure,320); });
+  /* hiệu ứng vào trang: thả cuộn xuống (không có lớp phủ tối) */
+  if(!reduce){
+    scroll.classList.add('no-anim','rolled'); measure();
+    requestAnimationFrame(function(){ scroll.classList.remove('no-anim');
+      requestAnimationFrame(function(){ setTimeout(function(){ scroll.classList.remove('rolled'); },200); }); });
+  }
+  function setRolled(on){
+    measure();
+    if(on){ try{scrollTo({top:0,behavior:'instant'});}catch(e){scrollTo(0,0);} }
+    requestAnimationFrame(function(){ scroll.classList.toggle('rolled',on); });
+  }
+  var down=false,sy=0,moved=false;
+  roller.addEventListener('pointerdown',function(e){ down=true; sy=e.clientY; moved=false; try{roller.setPointerCapture(e.pointerId);}catch(_){} });
+  roller.addEventListener('pointermove',function(e){ if(!down)return; var dy=e.clientY-sy; if(Math.abs(dy)>8)moved=true;
+    if(dy<-42){ down=false; setRolled(true);} else if(dy>42){ down=false; setRolled(false);} });
+  roller.addEventListener('pointerup',function(){ down=false; });
+  roller.addEventListener('pointercancel',function(){ down=false; });
+  roller.addEventListener('click',function(){ if(moved){moved=false;return;} setRolled(!scroll.classList.contains('rolled')); });
+  /* bấm menu/logo thì tự mở cuộn ra để xem nội dung */
+  document.querySelectorAll('#topmenu a, .nav-cta, .brand').forEach(function(a){ a.addEventListener('click',function(){ if(scroll.classList.contains('rolled')) setRolled(false); }); });
+})();
+
+/* ---------- scroll reveal ---------- */
+const revs=[...document.querySelectorAll('.reveal')];let rTick=false;
+function checkReveal(){rTick=false;const h=innerHeight;for(const el of revs){if(!el.classList.contains('in')&&el.getBoundingClientRect().top<h*0.92)el.classList.add('in');}}
+function onScrollR(){if(!rTick){rTick=true;requestAnimationFrame(checkReveal);}}
+addEventListener('scroll',onScrollR,{passive:true});addEventListener('resize',onScrollR);addEventListener('load',checkReveal);checkReveal();
+
+/* ---------- burger ---------- */
+const burger=document.getElementById('burger'),topmenu=document.getElementById('topmenu');
+burger.onclick=()=>{burger.classList.toggle('open');topmenu.classList.toggle('open');};
+topmenu.querySelectorAll('a').forEach(a=>a.onclick=()=>{burger.classList.remove('open');topmenu.classList.remove('open');});
+
+/* ---------- scroll-spy ---------- */
+const navLinks=[...document.querySelectorAll('#topmenu a')];
+const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id='#'+e.target.id;navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));}});},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+secs.forEach(s=>spy.observe(s));
+
+/* ---------- BACKGROUND slideshow: tự đổi ảnh nền + crossfade mượt ---------- */
+(function(){
+  var wall=document.getElementById('wall'); if(!wall)return;
+  /* === Danh sách ảnh nền chạy vòng — thêm/bớt/đổi tên file tại đây === */
+  var SLIDES=['background1.jpg','background2.jpg','background3.jpg'];
+  var EVERY=7000;   /* đổi ảnh mỗi 7 giây (đổi số này nếu muốn nhanh/chậm hơn) */
+  if(!SLIDES.length) return;
+  var els=SLIDES.map(function(src,i){var d=document.createElement('div');d.className='slide'+(i===0?' on':'');
+    d.style.backgroundImage="url('"+src+"')"; d.style.zIndex=i; wall.appendChild(d); return d;});
+  if(els.length<2 || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var idx=0, topz=els.length;
+  setInterval(function(){
+    var nxt=(idx+1)%els.length, prev=idx;
+    els[nxt].style.zIndex=(++topz); els[nxt].classList.add('on'); idx=nxt;
+    setTimeout(function(){ els[prev].classList.remove('on'); }, 1800);
+  }, EVERY);
+})();
+
+/* ---------- falling sakura petals ---------- */
+(function(){
+  const cv=document.getElementById('petals'),cx=cv.getContext('2d');let W,H,ps=[];
+  const COLS=['rgba(217,139,165,','rgba(231,155,184,','rgba(255,182,214,','rgba(200,120,150,'];
+  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;}addEventListener('resize',rs);rs();
+  const N=Math.min(24,Math.round(innerWidth/60));
+  function seed(y){return{x:Math.random()*W,y:y==null?Math.random()*H:y,s:5+Math.random()*7,sp:.35+Math.random()*.7,dr:(Math.random()-.5)*.7,a:Math.random()*Math.PI*2,va:(Math.random()-.5)*.03,c:COLS[(Math.random()*COLS.length)|0],o:.28+Math.random()*.36};}
+  for(let i=0;i<N;i++)ps.push(seed());
+  function petal(s){cx.beginPath();cx.moveTo(0,-s);cx.bezierCurveTo(s*.85,-s*.5,s*.85,s*.5,0,s);cx.bezierCurveTo(-s*.85,s*.5,-s*.85,-s*.5,0,-s);cx.closePath();}
+  function tick(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.y+=p.sp;p.x+=p.dr+Math.sin(p.y/60)*.3;p.a+=p.va;if(p.y>H+14){Object.assign(p,seed(-12));}cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c+p.o+')';petal(p.s);cx.fill();cx.restore();});requestAnimationFrame(tick);}
+  tick();
+})();
+
+/* ---------- nhạc nền loop ---------- */
+(function(){
+  const bgm=document.getElementById('bgm'),b=document.getElementById('musicBtn');if(!bgm||!b)return;
+  bgm.loop=true;bgm.volume=0.6;let userPaused=false;
+  function ui(on){b.classList.toggle('playing',on);}
+  function tryPlay(){bgm.play().then(()=>ui(true)).catch(()=>ui(false));}
+  b.onclick=function(){if(bgm.paused){userPaused=false;tryPlay();}else{userPaused=true;bgm.pause();ui(false);}};
+  function kick(){if(!userPaused&&bgm.paused)tryPlay();window.removeEventListener('pointerdown',kick);window.removeEventListener('keydown',kick);}
+  window.addEventListener('pointerdown',kick);window.addEventListener('keydown',kick);
+  bgm.addEventListener('ended',function(){bgm.currentTime=0;if(!userPaused)tryPlay();});
+})();
+
+/* ---------- flame cursor follower ---------- */
+(function(){var cf=document.getElementById('curFlame');if(!cf)return;var shown=false;window.addEventListener('mousemove',function(e){cf.style.transform='translate('+(e.clientX-12)+'px,'+(e.clientY-13)+'px)';if(!shown){shown=true;cf.classList.add('on');}},{passive:true});document.addEventListener('mouseleave',function(){cf.classList.remove('on');});document.addEventListener('mouseenter',function(){if(shown)cf.classList.add('on');});})();
+
+/* ---------- pink fire ribbon trail ---------- */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  const tc=document.getElementById('trail');if(!tc)return;const tx=tc.getContext('2d');let tw,th;
+  function trs(){tw=tc.width=innerWidth;th=tc.height=innerHeight;}addEventListener('resize',trs);trs();
+  const pts=[];let drops=[];let lx=0,ly=0,started=false;
+  addEventListener('mousemove',function(e){
+    if(!started){lx=e.clientX;ly=e.clientY;started=true;}
+    pts.push({x:e.clientX,y:e.clientY});if(pts.length>28)pts.shift();
+    const dx=e.clientX-lx,dy=e.clientY-ly,d=Math.hypot(dx,dy);lx=e.clientX;ly=e.clientY;
+    if(d>2){const n=Math.min(5,2+Math.floor(d/7));for(let i=0;i<n;i++){const spark=Math.random()<.42;
+      drops.push({x:e.clientX+(Math.random()*8-4),y:e.clientY+(Math.random()*6-3),vx:(Math.random()*2-1)*(spark?1.8:1),vy:-(0.8+Math.random()*2)*(spark?1.3:1),r:spark?1+Math.random()*1.6:3+Math.random()*3.4,life:1,decay:spark?.03+Math.random()*.02:.02+Math.random()*.014,spark:spark});}}
+  },{passive:true});
+  function stroke(w,a){tx.beginPath();tx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length-1;i++){const mx=(pts[i].x+pts[i+1].x)/2,my=(pts[i].y+pts[i+1].y)/2;tx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);}tx.lineWidth=w;tx.globalAlpha=a;tx.stroke();}
+  function ribbon(){if(pts.length<3)return;tx.globalCompositeOperation='lighter';tx.lineJoin='round';tx.lineCap='round';
+    const g=tx.createLinearGradient(pts[0].x,pts[0].y,pts[pts.length-1].x,pts[pts.length-1].y);
+    g.addColorStop(0,'rgba(190,55,115,0)');g.addColorStop(.5,'rgba(255,120,175,.6)');g.addColorStop(1,'rgba(255,155,205,.95)');
+    tx.strokeStyle=g;stroke(18,.45);stroke(11,.7);
+    const core=tx.createLinearGradient(pts[0].x,pts[0].y,pts[pts.length-1].x,pts[pts.length-1].y);
+    core.addColorStop(0,'rgba(255,155,205,0)');core.addColorStop(.6,'rgba(255,205,230,.85)');core.addColorStop(1,'rgba(255,240,248,1)');
+    tx.strokeStyle=core;stroke(4,1);tx.globalAlpha=1;}
+  (function loop(){tx.clearRect(0,0,tw,th);ribbon();tx.globalCompositeOperation='lighter';
+    for(let i=drops.length-1;i>=0;i--){const p=drops[i];p.x+=p.vx;p.y+=p.vy;p.vy-=.055;p.r*=.978;p.x+=Math.sin(p.life*13)*.7;p.life-=p.decay;if(p.life<=0){drops.splice(i,1);continue;}const a=p.life;
+      if(p.spark){const rr=p.r*2.2,gg=tx.createRadialGradient(p.x,p.y,0,p.x,p.y,rr);gg.addColorStop(0,'rgba(255,235,246,'+a+')');gg.addColorStop(.5,'rgba(255,140,195,'+(a*.7)+')');gg.addColorStop(1,'rgba(190,55,115,0)');tx.fillStyle=gg;tx.beginPath();tx.arc(p.x,p.y,rr,0,7);tx.fill();
+      }else{const h=p.r*3.6,w=p.r*1.5;tx.save();tx.translate(p.x,p.y);const fl=Math.sin(p.life*22)*.16;tx.transform(1+fl,0,0,1,0,0);const g2=tx.createLinearGradient(0,h*.4,0,-h);g2.addColorStop(0,'rgba(180,50,110,0)');g2.addColorStop(.35,'rgba(255,105,170,'+(a*.75)+')');g2.addColorStop(.72,'rgba(255,165,210,'+(a*.92)+')');g2.addColorStop(1,'rgba(255,238,247,'+a+')');tx.beginPath();tx.moveTo(0,-h);tx.quadraticCurveTo(w,-h*.12,0,h*.4);tx.quadraticCurveTo(-w,-h*.12,0,-h);tx.closePath();tx.fillStyle=g2;tx.fill();tx.restore();}}
+    tx.globalCompositeOperation='source-over';if(pts.length&&Math.random()<.45)pts.shift();requestAnimationFrame(loop);})();
+})();
+</script>
+</body>
+</html>
