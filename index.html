@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Phan Bảo Ngọc · Kế toán – Kiểm toán</title>
+<title>Phan Bảo Ngọc · Accounting – Auditing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Shippori+Mincho:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -331,11 +331,13 @@ a{color:inherit;text-decoration:none}
   transition:height 1.5s cubic-bezier(.62,0,.2,1)}
 .scroll.rolled .roll-paper{height:16px}
 /* nhãn gợi ý ở tay cầm */
-.pull-hint{position:absolute;left:50%;top:24px;transform:translateX(-50%);white-space:nowrap;
+.pull-hint{position:absolute;left:50%;top:calc(100% + 12px);transform:translateX(-50%);white-space:nowrap;
   font-size:.68rem;letter-spacing:.5px;color:#e6d5b8;background:rgba(40,26,12,.82);
   padding:5px 11px;border-radius:999px;border:1px solid rgba(255,207,136,.35);
   opacity:0;transition:opacity .3s;pointer-events:none}
 .roller:hover .pull-hint{opacity:1}
+.scroll.rolled .pull-hint{opacity:1;animation:hintBob 1.8s ease-in-out infinite}
+@keyframes hintBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(4px)}}
 @media(hover:none){.pull-hint{display:none}}
 
 /* ==================== CURSOR: đốm lửa hồng + vệt lửa ==================== */
@@ -386,24 +388,20 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
 
 <!-- ============ TOP BAR ============ -->
 <header class="topbar" id="topbar">
-  <a href="#top" class="brand">
-    <span class="mk">竹</span>
-    <span class="tx"><b>Phan Bảo Ngọc</b><small>Kế toán – Kiểm toán · ACCA</small></span>
-  </a>
   <nav class="topmenu" id="topmenu">
-    <a href="#about">Giới thiệu</a>
-    <a href="#exp">Kinh nghiệm</a>
-    <a href="#awards">Giải thưởng</a>
-    <a href="#research">Nghiên cứu</a>
-    <a href="#act">Hoạt động</a>
-    <a href="#skills">Kỹ năng</a>
+    <a href="#about">About</a>
+    <a href="#exp">Experience</a>
+    <a href="#awards">Awards</a>
+    <a href="#research">Research</a>
+    <a href="#act">Activities</a>
+    <a href="#skills">Skills</a>
   </nav>
   <div class="nav-right">
-    <button class="mbtn" id="musicBtn" title="Bật/tắt nhạc nền" aria-label="Bật/tắt nhạc nền">
+    <button class="mbtn" id="musicBtn" title="Toggle music" aria-label="Toggle background music">
       <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><line x1="17" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="17" y2="15"/></svg>
       <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg>
     </button>
-    <a href="#contact" class="nav-cta">Liên hệ</a>
+    <a href="#contact" class="nav-cta">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -452,12 +450,12 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
 
       <h1>Phan Bảo Ngọc</h1>
       <svg class="mast-brush" viewBox="0 0 260 14" preserveAspectRatio="none"><path d="M3,8 C46,2 82,12 130,7 C178,2 214,11 257,5" fill="none" stroke="#b73225" stroke-width="4" stroke-linecap="round"/></svg>
-      <p class="role">Sinh viên <b>Kế toán – Kiểm toán</b> định hướng ACCA · hướng tới <b>Core Assurance @ EY</b></p>
-      <p class="desc">Mạnh về phân tích báo cáo tài chính và nghiên cứu học thuật, giàu kinh nghiệm lãnh đạo qua việc tổ chức các cuộc thi kế toán – kiểm toán quy mô toàn quốc.</p>
-      <span class="avail"><span class="dot"></span>Sẵn sàng thực tập Core Assurance</span>
+      <p class="role"><b>Accounting – Auditing</b> student on the ACCA path · aiming for <b>Core Assurance @ EY</b></p>
+      <p class="desc">Strong in financial-statement analysis and academic research, with solid leadership experience organizing national-scale accounting &amp; auditing competitions.</p>
+      <span class="avail"><span class="dot"></span>Open to a Core Assurance internship</span>
       <div class="mast-cta">
-        <a href="#contact" class="btn-p">Liên hệ ngay</a>
-        <a href="#exp" class="btn-s">Xem kinh nghiệm →</a>
+        <a href="#contact" class="btn-p">Get in touch</a>
+        <a href="#exp" class="btn-s">See experience →</a>
       </div>
       <div class="theme-note"><span class="jp">鬼滅の刃</span> Demon Slayer&nbsp;&nbsp;·&nbsp;&nbsp;<span class="jp">竈門禰豆子</span> Kamado Nezuko</div>
     </div>
@@ -465,21 +463,21 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
     <!-- ===== STATS BAND ===== -->
     <div class="statsband reveal">
       <div class="sb-top">
-        <div class="sb-big"><b>3.65<span>/4.0</span></b><em>GPA tích lũy</em></div>
+        <div class="sb-big"><b>3.65<span>/4.0</span></b><em>Cumulative GPA</em></div>
         <ul class="sb-mini">
-          <li><b>7.5</b> IELTS · Tiếng Anh</li>
-          <li><b>7/9</b> môn F ACCA đã hoàn thành</li>
-          <li><b>~1000</b> thí sinh · Cúp KTV Tài năng 15</li>
+          <li><b>7.5</b> IELTS · English</li>
+          <li><b>7/9</b> ACCA papers passed</li>
+          <li><b>~1000</b> candidates · Talented Auditor Cup 15</li>
         </ul>
       </div>
       <div class="sb-tag">
-        <h2>Vững chuyên môn, giàu trải nghiệm tổ chức</h2>
-        <p>Sinh viên năm cuối Kế toán – Kiểm toán với đam mê phân tích, kiểm toán và nghiên cứu; hướng tới sự nghiệp Core Assurance tại EY Việt Nam.</p>
+        <h2>Solid expertise, rich organizing experience</h2>
+        <p>Final-year Accounting – Auditing student passionate about analysis, auditing and research; aiming for a Core Assurance career at EY Vietnam.</p>
       </div>
       <div class="focus">
-        <div class="fcard"><div class="fk jp">析</div><h4>Phân tích tài chính</h4><p>Phân tích BCTC, thẩm định tín dụng, đánh giá năng lực tài chính doanh nghiệp.</p></div>
-        <div class="fcard"><div class="fk jp">監</div><h4>Kiểm soát &amp; Kiểm toán</h4><p>Tiếp cận quy trình kiểm soát nội bộ, hướng tới Core Assurance @ EY.</p></div>
-        <div class="fcard"><div class="fk jp">究</div><h4>Nghiên cứu &amp; Lãnh đạo</h4><p>Nghiên cứu định lượng đạt giải; dẫn dắt CLB &amp; cuộc thi toàn quốc.</p></div>
+        <div class="fcard"><div class="fk jp">析</div><h4>Financial analysis</h4><p>Financial-statement analysis, credit appraisal and corporate financial-capacity assessment.</p></div>
+        <div class="fcard"><div class="fk jp">監</div><h4>Control &amp; Audit</h4><p>Exposure to internal-control processes, aiming for Core Assurance @ EY.</p></div>
+        <div class="fcard"><div class="fk jp">究</div><h4>Research &amp; Leadership</h4><p>Award-winning quantitative research; led a club &amp; national competitions.</p></div>
       </div>
     </div>
 
@@ -489,27 +487,27 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">01</span><span class="k jp">華</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Giới thiệu</div>
+        <div class="title">About</div>
       </div>
-      <p class="about-lead reveal">Định hướng theo đuổi chứng chỉ <b style="color:var(--hanko)">ACCA</b> song song với chương trình Kế toán – Kiểm toán, mình chú trọng nền tảng phân tích, tư duy phản biện và trải nghiệm thực tế. Bên cạnh học thuật, mình dành nhiều tâm huyết cho công tác tổ chức — dẫn dắt câu lạc bộ chuyên môn và các cuộc thi kiểm toán toàn quốc — để rèn kỹ năng lãnh đạo, đàm phán và quản trị.</p>
+      <p class="about-lead reveal">Pursuing the <b style="color:var(--hanko)">ACCA</b> qualification alongside my Accounting – Auditing degree, I focus on analytical foundations, critical thinking and hands-on experience. Beyond academics, I invest heavily in organizing work — leading a professional club and national auditing competitions — to sharpen leadership, negotiation and management skills.</p>
       <div class="chips reveal">
-        <span class="chip key">Phân tích BCTC</span>
-        <span class="chip key">Kiểm soát nội bộ</span>
-        <span class="chip">Nghiên cứu định lượng</span>
-        <span class="chip">Lãnh đạo &amp; tổ chức</span>
+        <span class="chip key">Financial-statement analysis</span>
+        <span class="chip key">Internal control</span>
+        <span class="chip">Quantitative research</span>
+        <span class="chip">Leadership &amp; organizing</span>
       </div>
       <div class="panel edu reveal">
-        <span class="when">09/2023 – Dự kiến 2027</span>
-        <h4>Đại học Ngoại thương (FTU)</h4>
-        <div class="edu-row"><span class="k">Chuyên ngành</span><span class="v">Kế toán – Kiểm toán · ACCA</span></div>
-        <div class="edu-row"><span class="k">GPA tích lũy</span><span class="v">3.65 / 4.00</span></div>
-        <div class="edu-row"><span class="k">Học bổng</span><span class="v">Khuyến khích SV Giỏi (2024)</span></div>
+        <span class="when">Sep 2023 – Expected 2027</span>
+        <h4>Foreign Trade University (FTU)</h4>
+        <div class="edu-row"><span class="k">Major</span><span class="v">Accounting – Auditing · ACCA</span></div>
+        <div class="edu-row"><span class="k">Cumulative GPA</span><span class="v">3.65 / 4.00</span></div>
+        <div class="edu-row"><span class="k">Scholarship</span><span class="v">Academic Encouragement Award (2024)</span></div>
         <div class="edu-row" style="display:block">
-          <span class="k">Tiến độ ACCA · 7/9 môn</span>
+          <span class="k">ACCA progress · 7/9 papers</span>
           <div class="acca-mods">
             <span class="mod done">BT/F1</span><span class="mod done">MA/F2</span><span class="mod done">FA/F3</span>
             <span class="mod done">LW/F4</span><span class="mod done">PM/F5</span><span class="mod done">FR/F7</span>
-            <span class="mod done">AA/F8</span><span class="mod cur">FM/F9 · đang học</span>
+            <span class="mod done">AA/F8</span><span class="mod cur">FM/F9 · in progress</span>
           </div>
         </div>
       </div>
@@ -521,16 +519,16 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">02</span><span class="k jp">務</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Kinh nghiệm</div>
+        <div class="title">Experience</div>
       </div>
       <div class="panel reveal">
-        <div class="meta"><span class="when">02/2026 – 04/2026 · Hà Nội</span></div>
-        <h3>Ngân hàng TMCP Công Thương Việt Nam — VietinBank</h3>
-        <div class="role">Thực tập sinh Quan hệ Khách hàng</div>
+        <div class="meta"><span class="when">Feb 2026 – Apr 2026 · Hanoi</span></div>
+        <h3>Vietnam Joint Stock Commercial Bank for Industry and Trade — VietinBank</h3>
+        <div class="role">Customer Relationship Intern</div>
         <ul>
-          <li>Phân tích báo cáo tài chính của khách hàng doanh nghiệp để đánh giá hiệu quả hoạt động kinh doanh.</li>
-          <li>Rà soát hồ sơ thẩm định tín dụng, tiếp cận và làm quen với quy trình kiểm soát nội bộ của ngân hàng.</li>
-          <li>Hỗ trợ đánh giá năng lực tài chính và hoạt động kinh doanh của khách hàng, kiểm tra chứng từ phục vụ công tác thẩm định tín dụng.</li>
+          <li>Analyzed corporate clients' financial statements to assess business performance.</li>
+          <li>Reviewed credit-appraisal files and became familiar with the bank's internal-control processes.</li>
+          <li>Supported assessment of clients' financial capacity and operations, and checked documents for credit appraisal.</li>
         </ul>
       </div>
     </section>
@@ -541,16 +539,16 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">03</span><span class="k jp">賞</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Giải thưởng</div>
+        <div class="title">Awards</div>
       </div>
       <div class="panel reveal">
-        <div class="meta"><span class="when">05/2026 · SAFC – Trường Kinh tế, ĐH Bách khoa Hà Nội</span><span class="badge">Top 3</span></div>
+        <div class="meta"><span class="when">May 2026 · SAFC – School of Economics, Hanoi University of Science and Technology</span><span class="badge">Top 3</span></div>
         <h3>Managerial Accounting Mastermind</h3>
-        <div class="role">Á quân 2 (2nd Runner-up) · Top 3 chung cuộc</div>
+        <div class="role">2nd Runner-up · Overall Top 3</div>
         <ul>
-          <li>Tranh tài cùng các đội đến từ nhiều trường đại học, giải quyết những tình huống kế toán quản trị và ra quyết định kinh doanh dưới áp lực thời gian.</li>
-          <li>Vận dụng phân tích chi phí – sản lượng – lợi nhuận (CVP), lập ngân sách, phân tích chênh lệch và đo lường hiệu quả hoạt động để đưa ra các khuyến nghị thực tiễn.</li>
-          <li>Rèn luyện tư duy phân tích, kỹ năng làm việc nhóm và thuyết trình qua nhiều vòng thi.</li>
+          <li>Competed against teams from many universities, solving managerial-accounting cases and making business decisions under time pressure.</li>
+          <li>Applied cost–volume–profit (CVP) analysis, budgeting, variance analysis and performance measurement to deliver practical recommendations.</li>
+          <li>Strengthened analytical thinking, teamwork and presentation skills across multiple rounds.</li>
         </ul>
       </div>
     </section>
@@ -561,15 +559,15 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">04</span><span class="k jp">究</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Nghiên cứu</div>
+        <div class="title">Research</div>
       </div>
       <div class="panel reveal">
-        <div class="meta"><span class="when">2025 · Đại học Ngoại thương</span><span class="badge">Giải Nhất cấp Khoa</span></div>
-        <h3>Tác động của truyền thông mạng xã hội đến ý định &amp; hành vi tiêu dùng xanh của Gen Z tại Hà Nội</h3>
+        <div class="meta"><span class="when">2025 · Foreign Trade University</span><span class="badge">Faculty 1st Prize</span></div>
+        <h3>The impact of social media on Gen Z's green-consumption intention &amp; behavior in Hanoi</h3>
         <ul>
-          <li>Thực hiện đề tài nghiên cứu thực nghiệm về ảnh hưởng của mạng xã hội tới ý định và hành vi tiêu dùng xanh của Gen Z tại Hà Nội.</li>
-          <li>Thiết kế phương pháp nghiên cứu, thu thập &amp; phân tích dữ liệu khảo sát bằng kỹ thuật định lượng, chuyển kết quả thành khuyến nghị thực tiễn.</li>
-          <li>Đạt <b>Giải Nhất</b> cấp Khoa Kế toán – Kiểm toán (06/2025) và <b>Giải Ba</b> cấp Trường (05/2025).</li>
+          <li>Conducted an empirical study on how social media influences Gen Z's green-consumption intention and behavior in Hanoi.</li>
+          <li>Designed the research method, collected &amp; analyzed survey data with quantitative techniques, and turned results into practical recommendations.</li>
+          <li>Won <b>1st Prize</b> at the Accounting – Auditing Faculty (Jun 2025) and <b>3rd Prize</b> at University level (May 2025).</li>
         </ul>
       </div>
     </section>
@@ -580,27 +578,27 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">05</span><span class="k jp">団</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Hoạt động</div>
+        <div class="title">Activities</div>
       </div>
       <div class="panel reveal">
-        <figure class="act-fig"><img src="CLUB.jpg" alt="Cúp Kiểm toán viên Tài năng"></figure>
-        <div class="meta"><span class="when">11/2023 – 12/2025</span></div>
-        <h3>CLB Kế toán – Kiểm toán Tương lai (FTU)</h3>
-        <div class="role">Chủ tịch</div>
+        <figure class="act-fig"><img src="CLUB.jpg" alt="Talented Auditor Cup"></figure>
+        <div class="meta"><span class="when">Nov 2023 – Dec 2025</span></div>
+        <h3>Future Accounting – Auditing Club (FTU)</h3>
+        <div class="role">President</div>
         <ul>
-          <li>Đàm phán trực tiếp với EY Việt Nam, ACCA, VCCA và VACPA để huy động tài trợ tài chính &amp; kỹ thuật cho hai cuộc thi kiểm toán và thuế quy mô toàn quốc.</li>
-          <li>Dẫn dắt tổ chức “Cúp Kiểm toán viên Tài năng” lần thứ 15 — cuộc thi kiểm toán toàn quốc thu hút khoảng 1.000 thí sinh; toàn bộ Top 6 chung cuộc nhận offer thực tập từ EY Hà Nội &amp; EY TP.HCM.</li>
-          <li>Quản lý &amp; giám sát hoạt động tài chính của CLB: lập ngân sách, theo dõi chi phí, kiểm soát dòng tiền.</li>
+          <li>Negotiated directly with EY Vietnam, ACCA, VCCA and VACPA to secure financial &amp; technical sponsorship for two national auditing and tax competitions.</li>
+          <li>Led the 15th “Talented Auditor Cup” — a national auditing competition drawing about 1,000 candidates; the entire final Top 6 received internship offers from EY Hanoi &amp; EY Ho Chi Minh City.</li>
+          <li>Managed &amp; oversaw the club's finances: budgeting, cost tracking and cash-flow control.</li>
         </ul>
       </div>
       <div class="panel reveal">
-        <figure class="act-fig"><img src="YOUTH UNION.jpg" alt="Hội nghị kiện toàn Ban Chấp hành Đoàn trường"></figure>
-        <div class="meta"><span class="when">10/2025 – Hiện tại</span></div>
-        <h3>Đoàn Thanh niên Đại học Ngoại thương</h3>
-        <div class="role">Ủy viên Ban Chấp hành</div>
+        <figure class="act-fig"><img src="YOUTH UNION.jpg" alt="Youth Union Executive Committee conference"></figure>
+        <div class="meta"><span class="when">Oct 2025 – Present</span></div>
+        <h3>Youth Union of Foreign Trade University</h3>
+        <div class="role">Executive Committee Member</div>
         <ul>
-          <li>Một trong 8 đại diện sinh viên trong Ban Chấp hành Đoàn trường, góp phần vào công tác quản trị sinh viên và các sáng kiến toàn trường.</li>
-          <li>Là đầu mối kết nối giữa Ban Chấp hành và các CLB sinh viên: điều phối thông tin, hỗ trợ triển khai các hoạt động của tổ chức.</li>
+          <li>One of 8 student representatives on the school's Youth Union Executive Committee, contributing to student governance and school-wide initiatives.</li>
+          <li>Served as the liaison between the Executive Committee and student clubs, coordinating information and supporting the rollout of activities.</li>
         </ul>
       </div>
     </section>
@@ -611,17 +609,17 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">06</span><span class="k jp">技</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Kỹ năng</div>
+        <div class="title">Skills</div>
       </div>
       <div class="skill-grid">
-        <div class="skill-box reveal"><h4><span class="jp">専</span>Chuyên môn nổi bật</h4>
-          <div class="chips"><span class="chip key">Phân tích báo cáo tài chính</span><span class="chip key">Thẩm định tín dụng</span><span class="chip">Kiểm soát nội bộ</span><span class="chip">Đánh giá năng lực tài chính</span></div></div>
-        <div class="skill-box reveal"><h4><span class="jp">心</span>Kỹ năng mềm</h4>
-          <div class="chips"><span class="chip key">Tư duy phân tích</span><span class="chip">Giải quyết vấn đề</span><span class="chip">Giao tiếp</span><span class="chip">Làm việc nhóm</span><span class="chip">Quản lý thời gian</span></div></div>
-        <div class="skill-box reveal"><h4><span class="jp">計</span>Tin học văn phòng</h4>
+        <div class="skill-box reveal"><h4><span class="jp">専</span>Core expertise</h4>
+          <div class="chips"><span class="chip key">Financial-statement analysis</span><span class="chip key">Credit appraisal</span><span class="chip">Internal control</span><span class="chip">Financial-capacity assessment</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">心</span>Soft skills</h4>
+          <div class="chips"><span class="chip key">Analytical thinking</span><span class="chip">Problem solving</span><span class="chip">Communication</span><span class="chip">Teamwork</span><span class="chip">Time management</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">計</span>Office tools</h4>
           <div class="chips"><span class="chip key">Excel</span><span class="chip">PowerPoint</span><span class="chip">Word</span></div></div>
-        <div class="skill-box reveal"><h4><span class="jp">言</span>Ngoại ngữ</h4>
-          <div class="chips"><span class="chip key">Tiếng Việt · Bản ngữ</span><span class="chip key">Tiếng Anh · IELTS 7.5</span><span class="chip">Tiếng Trung · HSK 3</span></div></div>
+        <div class="skill-box reveal"><h4><span class="jp">言</span>Languages</h4>
+          <div class="chips"><span class="chip key">Vietnamese · Native</span><span class="chip key">English · IELTS 7.5</span><span class="chip">Chinese · HSK 3</span></div></div>
       </div>
     </section>
 
@@ -631,37 +629,37 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
         <div class="crow"><svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,1 120,11 170,5" fill="none" stroke="#cbb389" stroke-width="2"/></svg>
           <span class="med"><span class="num">07</span><span class="k jp">縁</span></span>
           <svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M0,6 C50,11 120,1 170,7" fill="none" stroke="#cbb389" stroke-width="2"/></svg></div>
-        <div class="title">Liên hệ</div>
+        <div class="title">Contact</div>
       </div>
-      <p class="contact-lead reveal">Rất mong được <span class="hl">đồng hành</span> cùng đội ngũ Core Assurance.</p>
+      <p class="contact-lead reveal">Looking forward to <span class="hl">joining</span> the Core Assurance team.</p>
       <div class="contact-cta reveal">
         <a class="c-mail" href="mailto:ngocpb1910.work@gmail.com">✉ &nbsp;ngocpb1910.work@gmail.com</a>
         <a class="c-pill" href="https://www.linkedin.com/in/b%E1%BA%A3o-ng%E1%BB%8Dc-phan-63678838b/" target="_blank" rel="noopener noreferrer">in&nbsp; LinkedIn</a>
         <a class="c-pill" href="tel:+84933868074">☎ &nbsp;(+84) 933 868 074</a>
-        <span class="c-soft">⌖ &nbsp;Hà Nội, Việt Nam</span>
+        <span class="c-soft">⌖ &nbsp;Hanoi, Vietnam</span>
       </div>
 
       <!-- partners -->
       <div class="partners reveal">
-        <div class="lb">Học tập · Thực tập · Hợp tác cùng</div>
-        <div class="row"><span>EY Việt Nam</span><span>ACCA</span><span>VCCA</span><span>VACPA</span><span>VietinBank</span><span>ĐH Ngoại thương</span><span>SAFC · HUST</span></div>
+        <div class="lb">Study · Internship · Partnered with</div>
+        <div class="row"><span>EY Vietnam</span><span>ACCA</span><span>VCCA</span><span>VACPA</span><span>VietinBank</span><span>Foreign Trade University</span><span>SAFC · HUST</span></div>
       </div>
 
       <div class="foot">
         <span class="ds-badge"><b class="jp">鬼滅の刃</b> Demon Slayer&nbsp;&nbsp;·&nbsp;&nbsp;<b class="jp">竈門禰豆子</b> Kamado Nezuko</span>
-        <span>Thiết kế lấy cảm hứng từ <em>Kimetsu no Yaiba · Nezuko</em></span>
+        <span>Design inspired by <em>Kimetsu no Yaiba · Nezuko</em></span>
         <span class="jp">華 開</span>
-        <span>Phan Bảo Ngọc · Kế toán – Kiểm toán</span>
+        <span>Phan Bảo Ngọc · Accounting – Auditing</span>
       </div>
     </section>
 
   </div>
   </div>
-  <div class="roller" id="roller" title="Bấm hoặc kéo để cuộn giấy lên/xuống">
+  <div class="roller" id="roller" title="Click or drag to roll the scroll up / down">
     <div class="roll-paper"></div>
     <div class="rod bottom"></div>
     <div class="tassel"></div>
-    <div class="pull-hint">Bấm / kéo để cuộn ↑↓</div>
+    <div class="pull-hint">Pull to open ↓</div>
   </div>
 </div>
 
@@ -685,11 +683,9 @@ input,textarea,select,button,a{cursor:var(--cur) 12 13,pointer!important}
   function measure(){ roll.style.setProperty('--openh',(roll.scrollHeight+80)+'px'); }
   measure(); addEventListener('resize',measure); addEventListener('load',function(){ setTimeout(measure,320); });
   /* hiệu ứng vào trang: thả cuộn xuống (không có lớp phủ tối) */
-  if(!reduce){
-    scroll.classList.add('no-anim','rolled'); measure();
-    requestAnimationFrame(function(){ scroll.classList.remove('no-anim');
-      requestAnimationFrame(function(){ setTimeout(function(){ scroll.classList.remove('rolled'); },200); }); });
-  }
+  /* mặc định: cuộn giấy ĐÓNG sẵn khi vào trang — kéo/bấm tua đỏ để mở */
+  scroll.classList.add('no-anim','rolled'); measure();
+  requestAnimationFrame(function(){ scroll.classList.remove('no-anim'); });
   function setRolled(on){
     measure();
     if(on){ try{scrollTo({top:0,behavior:'instant'});}catch(e){scrollTo(0,0);} }
